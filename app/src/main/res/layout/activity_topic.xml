@@ -16,6 +16,16 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"/>
 
+    <!-- НОВАЯ КНОПКА ДЛЯ ДОБАВЛЕНИЯ СЛОВА -->
+    <Button
+        android:id="@+id/btnAddWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+ Добавить новое слово"
+        android:backgroundTint="#0D6EFD"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="16dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTopics"
         android:layout_width="match_parent"

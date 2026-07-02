@@ -34,6 +34,20 @@ public class MainActivity extends AppCompatActivity {
         // 3. Получаем ID или название темы, переданное из TopicActivity
         String selectedTopicId = getIntent().getStringExtra("TOPIC_ID");
 
+        if (selectedTopicId != null && selectedTopicId.equals("review")) {
+            // Если выбрано повторение — загружаем выученные слова (isLearned = 1)
+            wordList = db.wordDao().getWordsForReview("A1");
+        } else {
+            // Иначе обычная логика по категориям
+            String categoryName = "Транспорт";
+            if (selectedTopicId != null) {
+                if (selectedTopicId.equals("food")) categoryName = "Еда";
+                else if (selectedTopicId.equals("shopping")) categoryName = "Покупки";
+                else if (selectedTopicId.equals("family")) categoryName = "Семья";
+            }
+            wordList = db.wordDao().getWordsForLesson("A1", categoryName);
+        }
+
         // Переводим ID в понятное базе данных название категории
         String categoryName = "Транспорт"; // По умолчанию
         if (selectedTopicId != null) {

@@ -17,6 +17,10 @@ public interface WordDao {
     @Update
     void updateWord(Word word);
 
+    // Удаление слов из базы данных
+    @androidx.room.Delete
+    void deleteWord(Word word);
+
     // Извлечь ВСЕ слова из базы данных
     @Query("SELECT * FROM word_table")
     List<Word> getAllWords();
