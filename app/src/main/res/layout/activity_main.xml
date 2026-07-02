@@ -21,6 +21,17 @@
         android:focusable="true"
         android:layout_marginBottom="40dp">
 
+        <!-- Кнопка Назад в самом верху экрана -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← Назад к темам"
+            android:textColor="#6C757D"
+            android:backgroundTint="#E9ECEF"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="start" />
+
         <!-- Немецкое слово -->
         <TextView
             android:id="@+id/tvGermanWord"

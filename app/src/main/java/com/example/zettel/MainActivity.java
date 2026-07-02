@@ -1,13 +1,13 @@
 package com.example.zettel;
 
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech; // Добавили импорт TTS
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.zettel.databinding.ActivityMainBinding;
 import java.util.List;
-import java.util.Locale; // Добавили импорт локали
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
     private AppDatabase db;
     private List<Word> wordList;
     private int currentWordIndex = 0;
-
-    // 1. Объявляем переменную для движка озвучки
     private TextToSpeech textToSpeech;
 
     @Override
@@ -25,21 +23,27 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 2. Инициализируем Text-to-Speech на немецком языке
+        // Включаем кнопку Назад прямо в макете через View Binding
+        if (binding.btnBack != null) {
+            binding.btnBack.setOnClickListener(v -> finish());
+        }
+
+        // Инициализируем голосовой движок немецкого языка
         initTextToSpeech();
 
         db = AppDatabase.getInstance(this);
         preloadWordsIfNeeded();
 
-        // 3. Получаем ID или название темы, переданное из TopicActivity
+        // Ловим выбранную тему из TopicActivity
         String selectedTopicId = getIntent().getStringExtra("TOPIC_ID");
 
+        // Переключаем запросы к БД по вашей новой логике
         if (selectedTopicId != null && selectedTopicId.equals("review")) {
-            // Если выбрано повторение — загружаем выученные слова (isLearned = 1)
-            wordList = db.wordDao().getWordsForReview("A1");
+            // Режим Повторения: подгружаем ВСЕ слова базы данных
+            wordList = db.wordDao().getAllWordsForReview();
         } else {
-            // Иначе обычная логика по категориям
-            String categoryName = "Транспорт";
+            // Обычные категории: подгружаем ВСЕ слова темы без скрытия выученных
+            String categoryName = "Транспорт"; // По умолчанию
             if (selectedTopicId != null) {
                 if (selectedTopicId.equals("food")) categoryName = "Еда";
                 else if (selectedTopicId.equals("shopping")) categoryName = "Покупки";
@@ -48,84 +52,100 @@ public class MainActivity extends AppCompatActivity {
             wordList = db.wordDao().getWordsForLesson("A1", categoryName);
         }
 
-        // Переводим ID в понятное базе данных название категории
-        String categoryName = "Транспорт"; // По умолчанию
-        if (selectedTopicId != null) {
-            if (selectedTopicId.equals("food")) categoryName = "Еда";
-            else if (selectedTopicId.equals("shopping")) categoryName = "Покупки";
-            else if (selectedTopicId.equals("family")) categoryName = "Семья";
-        }
-
-        // 4. Загружаем слова динамически на основе выбранной категории
-        wordList = db.wordDao().getWordsForLesson("A1", categoryName);
-
         displayCurrentWord();
 
-        // 5. Логика клика по карточке (показ перевода + ОЗВУЧКА)
+        // Клик по карточке: показываем перевод + ОЗВУЧКА
         binding.wordCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (wordList != null && !wordList.isEmpty() && currentWordIndex < wordList.size()) {
                     binding.tvTranslation.setVisibility(View.VISIBLE);
 
-                    // Озвучиваем текущее немецкое слово при открытии карточки
                     String wordToSpeak = wordList.get(currentWordIndex).getGermanWord();
                     speakGerman(wordToSpeak);
                 }
             }
         });
 
-        // 6. Логика кнопки "Знаю"
+        // Клик по кнопке "Знаю" с вашей новой круговой логикой и задержкой
         binding.btnKnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (wordList == null || wordList.isEmpty()) return;
 
                 Word currentWord = wordList.get(currentWordIndex);
-                currentWord.setLearned(true);
-                db.wordDao().updateWord(currentWord);
+                currentWord.setLearned(true); // Если тут ошибка, проверьте метод в Word.java
 
-                currentWordIndex++;
-                if (currentWordIndex < wordList.size()) {
-                    displayCurrentWord();
-                } else {
-                    binding.tvGermanWord.setText("Wunderbar!");
-                    binding.tvTranslation.setText("Вы выучили все слова в этой теме!");
-                    binding.tvTranslation.setVisibility(View.VISIBLE);
-                    binding.btnKnow.setEnabled(false);
-                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        db.wordDao().updateWord(currentWord);
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                displayCurrentWord();
+                                binding.btnKnow.setEnabled(false);
+
+                                binding.wordCard.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        currentWordIndex++;
+
+                                        if (currentWordIndex < wordList.size()) {
+                                            displayCurrentWord();
+                                        } else {
+                                            currentWordIndex = 0;
+                                            displayCurrentWord();
+                                            Toast.makeText(MainActivity.this, "Вы просмотрели все слова! Повторяем сначала.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }, 600);
+                            }
+                        });
+                    }
+                }).start();
             }
         });
     }
 
-    // Метод для инициализации TTS движка
     private void initTextToSpeech() {
         textToSpeech = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) {
-                int result = textToSpeech.setLanguage(Locale.GERMAN); // Ставим немецкий
+                int result = textToSpeech.setLanguage(Locale.GERMAN);
                 if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    Toast.makeText(MainActivity.this, "Немецкий язык не поддерживается устройством", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Немецкий язык не поддерживается", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(MainActivity.this, "Ошибка запуска голосового движка", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Ошибка запуска TTS", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    // Метод для воспроизведения звука
     private void speakGerman(String text) {
         if (textToSpeech != null) {
-            // Очищаем предыдущую очередь звуков и произносим новое слово
             textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
         }
     }
 
+    // Метод отображения слова со сменой цвета карточки
     private void displayCurrentWord() {
         if (wordList != null && !wordList.isEmpty() && currentWordIndex < wordList.size()) {
             Word word = wordList.get(currentWordIndex);
             binding.tvGermanWord.setText(word.getGermanWord());
             binding.tvTranslation.setText(word.getRussianTranslation());
             binding.tvTranslation.setVisibility(View.INVISIBLE);
+            binding.btnKnow.setEnabled(true);
+
+            // Смена цвета карточки на основе прогресса
+            if (word.isLearned()) { // Если тут ошибка, проверьте имя геттера в Word.java (может быть getLearned() или isLearned())
+                binding.wordCard.setBackgroundColor(android.graphics.Color.parseColor("#E8F5E9")); // Светло-зеленый
+                binding.tvGermanWord.setTextColor(android.graphics.Color.parseColor("#2E7D32"));
+            } else {
+                binding.wordCard.setBackgroundColor(android.graphics.Color.WHITE);
+                binding.tvGermanWord.setTextColor(android.graphics.Color.parseColor("#212529"));
+            }
+
         } else {
             binding.tvGermanWord.setText("Нет слов");
             binding.tvTranslation.setText("В этой теме пока пусто");
@@ -138,14 +158,11 @@ public class MainActivity extends AppCompatActivity {
             db.wordDao().insertWord(new Word("Das Auto", "Автомобиль", "Транспорт", "A1", "Самолет, Корабль, Поезд"));
             db.wordDao().insertWord(new Word("Der Zug", "Поезд", "Транспорт", "A1", "Велосипед, Автобус, Машина"));
             db.wordDao().insertWord(new Word("Das Fahrrad", "Велосипед", "Транспорт", "A1", "Трамвай, Самолет, Метро"));
-
-            // Добавим тесты для других категорий, чтобы проверить работу переключения тем!
             db.wordDao().insertWord(new Word("Das Essen", "Еда", "Еда", "A1", "Яблоко, Хлеб"));
-            db.wordDao().insertWord(new Word("Das Spielzeug","Игрушка", "Семья", "A1", "Мама, Папа"));
+            db.wordDao().insertWord(new Word("Die Familie", "Семья", "Семья", "A1", "Мама, Папа"));
         }
     }
 
-    // Обязательно освобождаем ресурсы при выходе с экрана карточек
     @Override
     protected void onDestroy() {
         if (textToSpeech != null) {
@@ -155,4 +172,5 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 }
+
 

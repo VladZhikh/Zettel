@@ -27,11 +27,13 @@ public interface WordDao {
 
     // Самый главный запрос для карточек Zettel:
     // Достаем слова конкретного уровня (A1/A2) и конкретной темы, которые еще НЕ выучены
-    @Query("SELECT * FROM word_table WHERE level = :selectedLevel AND category = :selectedCategory AND isLearned = 0")
+    // ТЕПЕРЬ ДОСТАЕМ ВООБЩЕ ВСЕ СЛОВА ТЕМЫ (и выученные, и нет)
+    @Query("SELECT * FROM word_table WHERE level = :selectedLevel AND category = :selectedCategory")
     List<Word> getWordsForLesson(String selectedLevel, String selectedCategory);
 
-    // Дополнительный запрос для режима повторения (вытягиваем выученные слова)
-    @Query("SELECT * FROM word_table WHERE level = :selectedLevel AND isLearned = 1")
-    List<Word> getWordsForReview(String selectedLevel);
+    // ТЕПЕРЬ ДЛЯ ПОВТОРЕНИЯ ЗАГРУЖАЕМ АБСОЛЮТНО ВСЕ СЛОВА ИЗ БАЗЫ
+    @Query("SELECT * FROM word_table")
+    List<Word> getAllWordsForReview();
+
 }
 
