@@ -24,9 +24,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Включаем кнопку Назад прямо в макете через View Binding
+        //if (binding.btnBack != null) {
+        //    binding.btnBack.setOnClickListener(v -> finish());
+        //}
         if (binding.btnBack != null) {
-            binding.btnBack.setOnClickListener(v -> finish());
+            binding.btnBack.setOnClickListener(v -> {
+                // Говорим предыдущему экрану, что мы успешно поработали с данными
+                setResult(RESULT_OK);
+                finish();
+            });
         }
+
 
         // Инициализируем голосовой движок немецкого языка
         initTextToSpeech();

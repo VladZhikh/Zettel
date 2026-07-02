@@ -1,11 +1,10 @@
-package com.example.zettel; // Укажите ваш пакет
+package com.example.zettel;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,45 +13,33 @@ import java.util.List;
 
 public class TopicActivity extends AppCompatActivity {
 
+    private RecyclerView rvTopics;
+    private TopicAdapter adapter;
+    private List<Topic> topics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic);
 
-        RecyclerView rvTopics = findViewById(R.id.rvTopics);
+        rvTopics = findViewById(R.id.rvTopics);
         rvTopics.setLayoutManager(new LinearLayoutManager(this));
 
-
-        // Наш тестовый список тем
-        List<Topic> topics = new ArrayList<>();
+        // Инициализируем список тем один раз
+        topics = new ArrayList<>();
         topics.add(new Topic("transport", "Транспорт", "Der Transport"));
         topics.add(new Topic("food", "Еда", "Das Essen"));
         topics.add(new Topic("shopping", "Покупки", "Das Einkaufen"));
         topics.add(new Topic("family", "Семья", "Die Familie"));
-        // Добавляем новую псевдо-тему для повторения выученного:
         topics.add(new Topic("review", "Повторение слов", "Wiederholung"));
 
-        // Инициализируем адаптер и передаем логику клика
-        TopicAdapter adapter = new TopicAdapter(topics, topic -> {
-            // Переходим в MainActivity (экран с карточкой)
-            Intent intent = new Intent(TopicActivity.this, MainActivity.class);
-            // Передаем ID темы, чтобы MainActivity знала, какие слова показывать
-            intent.putExtra("TOPIC_ID", topic.getId());
-            startActivity(intent);
-        });
-
-        rvTopics.setAdapter(adapter);
-// Внутри onCreate в TopicActivity.java:
-
+        // Логика кнопки добавления слова (остается без изменений)
         Button btnAddWord = findViewById(R.id.btnAddWord);
-        AppDatabase db = AppDatabase.getInstance(this); // Получаем доступ к базе
+        AppDatabase db = AppDatabase.getInstance(this);
 
         btnAddWord.setOnClickListener(v -> {
-            // Создаем диалоговое окно
             androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(TopicActivity.this);
             builder.setTitle("Добавить новое слово");
-
-            // Инфлейтим разметку диалога
             View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_word, null);
             builder.setView(dialogView);
 
@@ -66,24 +53,36 @@ public class TopicActivity extends AppCompatActivity {
                 String category = etCategory.getText().toString().trim();
 
                 if (!german.isEmpty() && !russian.isEmpty() && !category.isEmpty()) {
-                    // Создаем новый объект Word. Проверьте ваш конструктор Word!
-                    // Передаем (Немецкий, Русский, Категория, Уровень, Варианты ложных ответов)
                     Word newWord = new Word(german, russian, category, "A1", "");
-
-                    // Сохраняем в базу данных в фоновом потоке, так как Room запрещает делать это в главном
                     new Thread(() -> {
                         db.wordDao().insertWord(newWord);
-                        runOnUiThread(() -> Toast.makeText(TopicActivity.this, "Слово успешно добавлено!", Toast.LENGTH_SHORT).show());
+                        runOnUiThread(() -> {
+                            Toast.makeText(TopicActivity.this, "Слово успешно добавлено!", Toast.LENGTH_SHORT).show();
+                            // Принудительно обновляем список после добавления слова
+                            onResume();
+                        });
                     }).start();
-
                 } else {
                     Toast.makeText(TopicActivity.this, "Заполните все поля!", Toast.LENGTH_SHORT).show();
                 }
             });
-
             builder.setNegativeButton("Отмена", null);
             builder.create().show();
         });
     }
-}
 
+    // НОВЫЙ МЕТОД: Срабатывает КАЖДЫЙ РАЗ, когда мы возвращаемся на этот экран
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Пересоздаем адаптер, чтобы он заново пересчитал прогресс из базы данных
+        adapter = new TopicAdapter(topics, topic -> {
+            Intent intent = new Intent(TopicActivity.this, MainActivity.class);
+            intent.putExtra("TOPIC_ID", topic.getId());
+            startActivity(intent);
+        });
+
+        rvTopics.setAdapter(adapter);
+    }
+}

@@ -22,15 +22,18 @@
         android:layout_marginBottom="40dp">
 
         <!-- Кнопка Назад в самом верху экрана -->
-        <Button
+        <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="← Назад к темам"
-            android:textColor="#6C757D"
-            android:backgroundTint="#E9ECEF"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="start" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="start"
+            android:layout_marginBottom="16dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Назад к темам"
+            android:src="@android:drawable/ic_menu_revert"
+            xmlns:app="http://android.com"
+            app:tint="#212529" />
+
 
         <!-- Немецкое слово -->
         <TextView
