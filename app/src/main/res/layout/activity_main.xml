@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://android.com"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,7 +9,19 @@
     android:background="#F8F9FA"
     android:padding="24dp">
 
-    <!-- Белая карточка слова (Zettel) -->
+    <!-- КНОПКА НАЗАД  -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="start"
+        android:layout_marginBottom="16dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Назад к темам"
+        android:src="@android:drawable/ic_menu_revert"
+        app:tint="#212529" />
+
+    <!-- карточка слова -->
     <LinearLayout
         android:id="@+id/wordCard"
         android:layout_width="300dp"
@@ -21,20 +34,6 @@
         android:focusable="true"
         android:layout_marginBottom="40dp">
 
-        <!-- Кнопка Назад в самом верху экрана -->
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="start"
-            android:layout_marginBottom="16dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Назад к темам"
-            android:src="@android:drawable/ic_menu_revert"
-            xmlns:app="http://android.com"
-            app:tint="#212529" />
-
-
         <!-- Немецкое слово -->
         <TextView
             android:id="@+id/tvGermanWord"
@@ -45,7 +44,18 @@
             android:textSize="32sp"
             android:textStyle="bold" />
 
-        <!-- Перевод (пока скрыт) -->
+        <!-- Кнопка динамика внутри карточки -->
+        <ImageButton
+            android:id="@+id/btnSpeakCard"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_btn_speak_now"
+            android:contentDescription="Прослушать еще раз"
+            app:tint="#0D6EFD" />
+
+        <!-- Перевод  -->
         <TextView
             android:id="@+id/tvTranslation"
             android:layout_width="wrap_content"
@@ -58,7 +68,7 @@
 
     </LinearLayout>
 
-    <!-- Зеленая кнопка -->
+    <!-- Зеленая кнопка "знаю"-->
     <Button
         android:id="@+id/btnKnow"
         android:layout_width="200dp"

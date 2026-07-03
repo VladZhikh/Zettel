@@ -107,6 +107,18 @@ public class MainActivity extends AppCompatActivity {
                 }).start();
             }
         });
+        // Клик по динамику на самой карточке слова
+        binding.btnSpeakCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (wordList != null && !wordList.isEmpty() && currentWordIndex < wordList.size()) {
+                    // Просто берём текущее немецкое слово и озвучиваем его повторно
+                    String wordToSpeak = wordList.get(currentWordIndex).getGermanWord();
+                    speakGerman(wordToSpeak);
+                }
+            }
+        });
+
     }
 
     private void initTextToSpeech() {

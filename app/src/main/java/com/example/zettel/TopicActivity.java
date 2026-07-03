@@ -125,19 +125,26 @@ public class TopicActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // Всегда передаем актуальные ID и Имя темы при переходе
         if (adapter != null) {
             adapter.notifyDataSetChanged();
         } else {
             adapter = new TopicAdapter(topics, topic -> {
-                Intent intent = new Intent(TopicActivity.this, MainActivity.class);
-                intent.putExtra("TOPIC_ID", topic.getId());
-                intent.putExtra("TOPIC_NAME_RU", topic.getNameRu()); // Важно для фильтрации новых тем
-                startActivity(intent);
+                // ПРОВЕРКА: Если выбрали Повторение — открываем ReviewActivity со списком!
+                if (topic.getId().equals("review")) {
+                    Intent intent = new Intent(TopicActivity.this, ReviewActivity.class);
+                    startActivity(intent);
+                } else {
+                    // Для остальных тем открываем привычную MainActivity с карточками
+                    Intent intent = new Intent(TopicActivity.this, MainActivity.class);
+                    intent.putExtra("TOPIC_ID", topic.getId());
+                    intent.putExtra("TOPIC_NAME_RU", topic.getNameRu());
+                    startActivity(intent);
+                }
             });
             rvTopics.setAdapter(adapter);
         }
     }
+
 
     // Сохранение списка тем перед уничтожением экрана (поворот)
     @Override
