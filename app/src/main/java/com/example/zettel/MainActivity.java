@@ -165,14 +165,47 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void preloadWordsIfNeeded() {
+        // Проверяем, пустая ли база данных
         if (db.wordDao().getAllWords().isEmpty()) {
+
+            // --- КАТЕГОРИЯ: ТРАНСПОРТ ---
+            // Уровень A1
             db.wordDao().insertWord(new Word("Das Auto", "Автомобиль", "Транспорт", "A1", "Самолет, Корабль, Поезд"));
             db.wordDao().insertWord(new Word("Der Zug", "Поезд", "Транспорт", "A1", "Велосипед, Автобус, Машина"));
             db.wordDao().insertWord(new Word("Das Fahrrad", "Велосипед", "Транспорт", "A1", "Трамвай, Самолет, Метро"));
-            db.wordDao().insertWord(new Word("Das Essen", "Еда", "Еда", "A1", "Яблоко, Хлеб"));
-            db.wordDao().insertWord(new Word("Die Familie", "Семья", "Семья", "A1", "Мама, Папа"));
+            // Уровень A2
+            db.wordDao().insertWord(new Word("Der LKW", "Грузовик", "Транспорт", "A2", "Лодка, Вертолет, Мотоцикл"));
+            db.wordDao().insertWord(new Word("Das Raumschiff", "Космический корабль", "Транспорт", "A2", "Автобус, Поезд, Такси"));
+            // Уровень B1
+            db.wordDao().insertWord(new Word("Удалить этот тест", "Тест", "Транспорт", "B1", "1, 2, 3"));
+
+            // --- КАТЕГОРИЯ: ЕДА ---
+            // Уровень A1
+            db.wordDao().insertWord(new Word("Das Essen", "Еда", "Еда", "A1", "Яблоко, Хлеб, Вода"));
+            db.wordDao().insertWord(new Word("Der Apfel", "Яблоко", "Еда", "A1", "Мясо, Молоко, Рыба"));
+            db.wordDao().insertWord(new Word("Das Brot", "Хлеб", "Еда", "A1", "Сыр, Масло, Яйцо"));
+            // Уровень A2
+            db.wordDao().insertWord(new Word("Огурец", "Die Gurke", "Еда", "A2", "Картошка, Лук, Чеснок"));
+            db.wordDao().insertWord(new Word("Der Käse", "Сыр", "Еда", "A2", "Колбаса, Ветчина, Соль"));
+
+            // --- КАТЕГОРИЯ: ПОКУПКИ ---
+            // Уровень A1
+            db.wordDao().insertWord(new Word("Kaufen", "Покупать", "Покупки", "A1", "Продавать, Платить, Искать"));
+            db.wordDao().insertWord(new Word("Das Geld", "Деньги", "Покупки", "A1", "Кошелек, Карта, Чек"));
+            // Уровень A2
+            db.wordDao().insertWord(new Word("Der Rabatt", "Скидка", "Покупки", "A2", "Цена, Касса, Товар"));
+            db.wordDao().insertWord(new Word("Teuer", "Дорогой", "Покупки", "A2", "Дешевый, Бесплатный, Новый"));
+
+            // --- КАТЕГОРИЯ: СЕМЬЯ ---
+            // Уровень A1
+            db.wordDao().insertWord(new Word("Die Familie", "Семья", "Семья", "A1", "Мама, Папа, Друг"));
+            db.wordDao().insertWord(new Word("Die Mutter", "Мать", "Семья", "A1", "Сестра, Брат, Бабушка"));
+            // Уровень A2
+            db.wordDao().insertWord(new Word("Die Eltern", "Родители", "Семья", "A2", "Дети, Внуки, Коллеги"));
+            db.wordDao().insertWord(new Word("Der Bruder", "Брат", "Семья", "A2", "Дядя, Тетя, Племянник"));
         }
     }
+
 
     @Override
     protected void onDestroy() {
