@@ -14,9 +14,35 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="12dp"/>
 
-    <!-- НОВАЯ КНОПКА ДЛЯ ДОБАВЛЕНИЯ СЛОВА -->
+    <!-- НОВЫЙ БЛОК: Выбор уровня сложности -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp"
+        android:background="@android:color/white"
+        android:padding="8dp"
+        android:elevation="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Уровень сложности:"
+            android:textColor="#212529"
+            android:textStyle="bold"
+            android:layout_marginEnd="12dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"/>
+    </LinearLayout>
+
+    <!-- Кнопка добавления слова -->
     <Button
         android:id="@+id/btnAddWord"
         android:layout_width="match_parent"

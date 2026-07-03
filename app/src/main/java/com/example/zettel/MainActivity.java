@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Красивая стрелочка назад (наш ImageButton)
+        // Кнопка Назад
         if (binding.btnBack != null) {
             binding.btnBack.setOnClickListener(v -> {
                 setResult(RESULT_OK);
@@ -34,21 +34,26 @@ public class MainActivity extends AppCompatActivity {
         // Инициализация голосового движка TTS
         initTextToSpeech();
 
+        // Инициализируем базу данных
         db = AppDatabase.getInstance(this);
-        preloadWordsIfNeeded();
 
-        // 1. Принимаем ID темы и прямое РУССКОЕ название темы из TopicActivity
+        // Запускаем первичное наполнение базы в безопасном фоновом потоке
+        new Thread(this::preloadWordsIfNeeded).start();
+
+        // Ловим выбранную тему, имя категории и уровень сложности из TopicActivity
         String selectedTopicId = getIntent().getStringExtra("TOPIC_ID");
         String selectedCategoryName = getIntent().getStringExtra("TOPIC_NAME_RU");
+        String selectedLevel = getIntent().getStringExtra("SELECTED_LEVEL");
 
-        // 2. Универсальная загрузка слов на основе переданных данных
+        // Защита: если уровень вдруг не передался, ставим базовый A1
+        String level = (selectedLevel != null) ? selectedLevel : "A1";
+
+        // Универсальная загрузка слов на основе выбранной сложности и темы
         if (selectedTopicId != null && selectedTopicId.equals("review")) {
-            // Режим Повторения: подгружаем ВСЕ слова базы данных
             wordList = db.wordDao().getAllWordsForReview();
         } else {
-            // Динамические категории: берем то имя, которое пришло. Если пусто — ставим "Транспорт"
             String categoryName = (selectedCategoryName != null) ? selectedCategoryName : "Транспорт";
-            wordList = db.wordDao().getWordsForLesson("A1", categoryName);
+            wordList = db.wordDao().getWordsForLesson(level, categoryName);
         }
 
         // Выводим первое слово на экран
@@ -61,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
                 if (wordList != null && !wordList.isEmpty() && currentWordIndex < wordList.size()) {
                     binding.tvTranslation.setVisibility(View.VISIBLE);
 
+                    String wordToSpeak = wordList.get(currentWordIndex).getGermanWord();
+                    speakGerman(wordToSpeak);
+                }
+            }
+        });
+
+        // Клик по динамику на самой карточке слова (повторная озвучка)
+        binding.btnSpeakCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (wordList != null && !wordList.isEmpty() && currentWordIndex < wordList.size()) {
                     String wordToSpeak = wordList.get(currentWordIndex).getGermanWord();
                     speakGerman(wordToSpeak);
                 }
@@ -107,18 +123,6 @@ public class MainActivity extends AppCompatActivity {
                 }).start();
             }
         });
-        // Клик по динамику на самой карточке слова
-        binding.btnSpeakCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (wordList != null && !wordList.isEmpty() && currentWordIndex < wordList.size()) {
-                    // Просто берём текущее немецкое слово и озвучиваем его повторно
-                    String wordToSpeak = wordList.get(currentWordIndex).getGermanWord();
-                    speakGerman(wordToSpeak);
-                }
-            }
-        });
-
     }
 
     private void initTextToSpeech() {
@@ -164,8 +168,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Тот самый метод автозаполнения базы слов разной сложности
     private void preloadWordsIfNeeded() {
-        // Проверяем, пустая ли база данных
         if (db.wordDao().getAllWords().isEmpty()) {
 
             // --- КАТЕГОРИЯ: ТРАНСПОРТ ---
@@ -177,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
             db.wordDao().insertWord(new Word("Der LKW", "Грузовик", "Транспорт", "A2", "Лодка, Вертолет, Мотоцикл"));
             db.wordDao().insertWord(new Word("Das Raumschiff", "Космический корабль", "Транспорт", "A2", "Автобус, Поезд, Такси"));
             // Уровень B1
-            db.wordDao().insertWord(new Word("Удалить этот тест", "Тест", "Транспорт", "B1", "1, 2, 3"));
+            db.wordDao().insertWord(new Word("Das Flugzeug", "Самолет", "Транспорт", "B1", "Самокат, Ролики, Скейт"));
 
             // --- КАТЕГОРИЯ: ЕДА ---
             // Уровень A1
@@ -185,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
             db.wordDao().insertWord(new Word("Der Apfel", "Яблоко", "Еда", "A1", "Мясо, Молоко, Рыба"));
             db.wordDao().insertWord(new Word("Das Brot", "Хлеб", "Еда", "A1", "Сыр, Масло, Яйцо"));
             // Уровень A2
-            db.wordDao().insertWord(new Word("Огурец", "Die Gurke", "Еда", "A2", "Картошка, Лук, Чеснок"));
+            db.wordDao().insertWord(new Word("Die Gurke", "Огурец", "Еда", "A2", "Картошка, Лук, Чеснок"));
             db.wordDao().insertWord(new Word("Der Käse", "Сыр", "Еда", "A2", "Колбаса, Ветчина, Соль"));
 
             // --- КАТЕГОРИЯ: ПОКУПКИ ---
@@ -205,7 +209,6 @@ public class MainActivity extends AppCompatActivity {
             db.wordDao().insertWord(new Word("Der Bruder", "Брат", "Семья", "A2", "Дядя, Тетя, Племянник"));
         }
     }
-
 
     @Override
     protected void onDestroy() {

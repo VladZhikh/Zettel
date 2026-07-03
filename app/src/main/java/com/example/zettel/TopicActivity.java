@@ -3,7 +3,10 @@ package com.example.zettel;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +19,10 @@ public class TopicActivity extends AppCompatActivity {
 
     private RecyclerView rvTopics;
     private TopicAdapter adapter;
-    private ArrayList<Topic> topics; // Привели к ArrayList для сохранения данных
+    private ArrayList<Topic> topics;
     private AppDatabase db;
+    private Spinner spinnerLevel;
+    private String currentSelectedLevel = "A1"; // Храним выбранный уровень
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +31,45 @@ public class TopicActivity extends AppCompatActivity {
 
         rvTopics = findViewById(R.id.rvTopics);
         rvTopics.setLayoutManager(new LinearLayoutManager(this));
+        spinnerLevel = findViewById(R.id.spinnerLevel);
 
         db = AppDatabase.getInstance(this);
 
-        // ПРОВЕРКА: Восстанавливаем список тем после поворота экрана
+        // Настройка выпадающего списка уровней сложности
+        String[] levels = {"A1", "A2", "B1", "B2"};
+        ArrayAdapter<String> levelAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, levels);
+        levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerLevel.setAdapter(levelAdapter);
+
+        // Слушатель выбора уровня сложности
+        spinnerLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                currentSelectedLevel = levels[position];
+                if (adapter != null) {
+                    // Передаем новый уровень в адаптер для пересчета шкал прогресса
+                    adapter.setSelectedLevel(currentSelectedLevel);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        // Восстановление списка тем после переворота экрана
         if (savedInstanceState != null && savedInstanceState.containsKey("SAVED_TOPICS")) {
             topics = (ArrayList<Topic>) savedInstanceState.getSerializable("SAVED_TOPICS");
+            if (savedInstanceState.containsKey("SAVED_LEVEL")) {
+                currentSelectedLevel = savedInstanceState.getString("SAVED_LEVEL");
+                // Устанавливаем сохраненный уровень в Спиннер
+                for (int i = 0; i < levels.length; i++) {
+                    if (levels[i].equals(currentSelectedLevel)) {
+                        spinnerLevel.setSelection(i);
+                        break;
+                    }
+                }
+            }
         } else {
-            // Самый первый чистый запуск приложения
             topics = new ArrayList<>();
             topics.add(new Topic("transport", "Транспорт", "Der Transport"));
             topics.add(new Topic("food", "Еда", "Das Essen"));
@@ -42,7 +78,7 @@ public class TopicActivity extends AppCompatActivity {
             topics.add(new Topic("review", "Повторение слов", "Wiederholung"));
         }
 
-        // Логика кнопки добавления слова и создания новой категории
+        // Логика кнопки добавления нового слова (добавили поле выбора уровня)
         Button btnAddWord = findViewById(R.id.btnAddWord);
         btnAddWord.setOnClickListener(v -> {
             androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(TopicActivity.this);
@@ -56,7 +92,6 @@ public class TopicActivity extends AppCompatActivity {
             android.widget.Spinner spinnerCategory = dialogView.findViewById(R.id.spinnerCategory);
             android.widget.ImageButton btnAddNewCategory = dialogView.findViewById(R.id.btnAddNewCategory);
 
-            // Собираем список названий категорий для Спиннера (кроме Повторения)
             List<String> categoryNames = new ArrayList<>();
             for (Topic t : topics) {
                 if (!t.getId().equals("review")) {
@@ -64,16 +99,14 @@ public class TopicActivity extends AppCompatActivity {
                 }
             }
 
-            android.widget.ArrayAdapter<String> spinnerAdapter = new android.widget.ArrayAdapter<>(
+            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
                     TopicActivity.this, android.R.layout.simple_spinner_item, categoryNames);
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerCategory.setAdapter(spinnerAdapter);
 
-            // Создание новой темы на лету
             btnAddNewCategory.setOnClickListener(vCat -> {
                 androidx.appcompat.app.AlertDialog.Builder catBuilder = new androidx.appcompat.app.AlertDialog.Builder(TopicActivity.this);
                 catBuilder.setTitle("Создать новую тему");
-
                 android.widget.EditText etNewCat = new android.widget.EditText(TopicActivity.this);
                 etNewCat.setHint("Название темы на русском");
                 catBuilder.setView(etNewCat);
@@ -82,14 +115,10 @@ public class TopicActivity extends AppCompatActivity {
                     String newCatName = etNewCat.getText().toString().trim();
                     if (!newCatName.isEmpty() && !categoryNames.contains(newCatName)) {
                         String newId = newCatName.toLowerCase().replaceAll("\\s+", "_");
-
-                        // Вставляем новую тему перед "Повторением"
                         topics.add(topics.size() - 1, new Topic(newId, newCatName, ""));
-
                         categoryNames.add(newCatName);
                         spinnerAdapter.notifyDataSetChanged();
                         spinnerCategory.setSelection(categoryNames.size() - 1);
-
                         if (adapter != null) adapter.notifyDataSetChanged();
                     }
                 });
@@ -103,12 +132,13 @@ public class TopicActivity extends AppCompatActivity {
                 String category = (spinnerCategory.getSelectedItem() != null) ? spinnerCategory.getSelectedItem().toString() : "";
 
                 if (!german.isEmpty() && !russian.isEmpty() && !category.isEmpty()) {
-                    Word newWord = new Word(german, russian, category, "A1", "");
+                    // Создаем новое слово с привязкой к ТЕКУЩЕМУ выбранному уровню сложности!
+                    Word newWord = new Word(german, russian, category, currentSelectedLevel, "");
                     new Thread(() -> {
                         db.wordDao().insertWord(newWord);
                         runOnUiThread(() -> {
                             Toast.makeText(TopicActivity.this, "Слово успешно добавлено!", Toast.LENGTH_SHORT).show();
-                            onResume(); // Пересчитываем прогресс шкал
+                            onResume();
                         });
                     }).start();
                 } else {
@@ -126,31 +156,33 @@ public class TopicActivity extends AppCompatActivity {
         super.onResume();
 
         if (adapter != null) {
-            adapter.notifyDataSetChanged();
+            adapter.setSelectedLevel(currentSelectedLevel); // Принудительно обновляем уровень при возврате
         } else {
             adapter = new TopicAdapter(topics, topic -> {
-                // ПРОВЕРКА: Если выбрали Повторение — открываем ReviewActivity со списком!
                 if (topic.getId().equals("review")) {
                     Intent intent = new Intent(TopicActivity.this, ReviewActivity.class);
+                    // Передаем уровень в экран общего списка, если понадобится фильтр
+                    intent.putExtra("SELECTED_LEVEL", currentSelectedLevel);
                     startActivity(intent);
                 } else {
-                    // Для остальных тем открываем привычную MainActivity с карточками
                     Intent intent = new Intent(TopicActivity.this, MainActivity.class);
                     intent.putExtra("TOPIC_ID", topic.getId());
                     intent.putExtra("TOPIC_NAME_RU", topic.getNameRu());
+                    intent.putExtra("SELECTED_LEVEL", currentSelectedLevel); // ТЕПЕРЬ ПЕРЕДАЕМ И ВЫБРАННЫЙ УРОВЕНЬ!
                     startActivity(intent);
                 }
             });
+            adapter.setSelectedLevel(currentSelectedLevel);
             rvTopics.setAdapter(adapter);
         }
     }
 
-
-    // Сохранение списка тем перед уничтожением экрана (поворот)
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable("SAVED_TOPICS", topics);
+        outState.putString("SAVED_LEVEL", currentSelectedLevel);
     }
 }
+
 

@@ -1,4 +1,4 @@
-package com.example.zettel; // Укажите ваш пакет
+package com.example.zettel;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
 
     private final List<Topic> topics;
     private final OnTopicClickListener clickListener;
+    private String selectedLevel = "A1"; // Уровень по умолчанию
 
     public interface OnTopicClickListener {
         void onTopicClick(Topic topic);
@@ -21,6 +22,12 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
     public TopicAdapter(List<Topic> topics, OnTopicClickListener clickListener) {
         this.topics = topics;
         this.clickListener = clickListener;
+    }
+
+    // НОВЫЙ МЕТОД: Позволяет менять уровень из Activity и обновлять шкалы
+    public void setSelectedLevel(String level) {
+        this.selectedLevel = level;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -36,21 +43,22 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         holder.tvNameRu.setText(topic.getNameRu());
         holder.tvNameDe.setText(topic.getNameDe());
 
-        // Получаем экземпляр базы данных
         AppDatabase db = AppDatabase.getInstance(holder.itemView.getContext());
 
-        // Псевдо-тема "Повторение" не имеет фиксированной категории, для нее считаем общий прогресс всей базы
         if (topic.getId().equals("review")) {
             new Thread(() -> {
-                int total = db.wordDao().getAllWords().size();
+                // В режиме повторения считаем слова только ВЫБРАННОГО уровня
+                int total = 0;
                 int learned = 0;
                 for (Word w : db.wordDao().getAllWords()) {
-                    if (w.isLearned()) learned++;
+                    if (w.getLevel().equals(selectedLevel)) {
+                        total++;
+                        if (w.isLearned()) learned++;
+                    }
                 }
 
                 int percent = (total > 0) ? (learned * 100 / total) : 0;
 
-                // Передаем результат в главный UI-поток
                 int finalLearned = learned;
                 int finalTotal = total;
                 holder.itemView.post(() -> {
@@ -59,22 +67,18 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
                 });
             }).start();
         } else {
-            // Для обычных категорий ("Транспорт", "Еда" и т.д.)
             new Thread(() -> {
-                // Преобразуем ID темы в имя категории для БД, как в MainActivity
                 String categoryName = "Транспорт";
                 if (topic.getId().equals("food")) categoryName = "Еда";
                 else if (topic.getId().equals("shopping")) categoryName = "Покупки";
                 else if (topic.getId().equals("family")) categoryName = "Семья";
 
-                // Тянем цифры из наших новых методов в WordDao
-                int totalWords = db.wordDao().getTotalWordsCount(categoryName);
-                int learnedWords = db.wordDao().getLearnedWordsCount(categoryName);
+                // Передаем ТЕКУЩИЙ ВЫБРАННЫЙ уровень сложности в DAO
+                int totalWords = db.wordDao().getTotalWordsCount(categoryName, selectedLevel);
+                int learnedWords = db.wordDao().getLearnedWordsCount(categoryName, selectedLevel);
 
-                // Высчитываем процент
                 int progressPercent = (totalWords > 0) ? (learnedWords * 100 / totalWords) : 0;
 
-                // Передаем изменения на экран
                 holder.itemView.post(() -> {
                     holder.tvProgressPercent.setText(progressPercent + "%");
                     holder.topicProgressBar.setProgress(progressPercent);
@@ -103,3 +107,4 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         }
     }
 }
+

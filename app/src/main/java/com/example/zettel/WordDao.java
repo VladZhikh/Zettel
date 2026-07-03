@@ -36,11 +36,12 @@ public interface WordDao {
     List<Word> getAllWordsForReview();
 
     // Считаем общее количество слов в конкретной категории
-    @Query("SELECT COUNT(*) FROM word_table WHERE category = :categoryName")
-    int getTotalWordsCount(String categoryName);
+    @Query("SELECT COUNT(*) FROM word_table WHERE category = :categoryName AND level = :level")
+    int getTotalWordsCount(String categoryName, String level);
+
 
     // Считаем количество только выученных слов в конкретной категории
-    @Query("SELECT COUNT(*) FROM word_table WHERE category = :categoryName AND isLearned = 1")
-    int getLearnedWordsCount(String categoryName);
+    @Query("SELECT COUNT(*) FROM word_table WHERE category = :categoryName AND level = :level AND isLearned = 1")
+    int getLearnedWordsCount(String categoryName, String level);
 }
 
