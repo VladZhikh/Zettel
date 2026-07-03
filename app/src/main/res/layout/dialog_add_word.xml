@@ -18,10 +18,29 @@
         android:hint="Перевод (например, Книга)"
         android:layout_marginTop="12dp"/>
 
-    <EditText
-        android:id="@+id/etCategory"
+    <!-- Новая горизонтальная группа для выбора и добавления темы -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Категория (Транспорт, Еда, Покупки, Семья)"
-        android:layout_marginTop="12dp"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical">
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp" />
+
+        <ImageButton
+            android:id="@+id/btnAddNewCategory"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_input_add"
+            android:contentDescription="Добавить новую тему"
+            xmlns:app="http://android.com"
+            app:tint="#0D6EFD" />
+    </LinearLayout>
 </LinearLayout>

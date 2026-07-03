@@ -1,6 +1,6 @@
 package com.example.zettel;
 
-public class Topic {
+public class Topic implements java.io.Serializable {
     private final String id;
     private final String nameRu;
     private final String nameDe;

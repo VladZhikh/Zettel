@@ -23,46 +23,38 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Включаем кнопку Назад прямо в макете через View Binding
-        //if (binding.btnBack != null) {
-        //    binding.btnBack.setOnClickListener(v -> finish());
-        //}
+        // Красивая стрелочка назад (наш ImageButton)
         if (binding.btnBack != null) {
             binding.btnBack.setOnClickListener(v -> {
-                // Говорим предыдущему экрану, что мы успешно поработали с данными
                 setResult(RESULT_OK);
                 finish();
             });
         }
 
-
-        // Инициализируем голосовой движок немецкого языка
+        // Инициализация голосового движка TTS
         initTextToSpeech();
 
         db = AppDatabase.getInstance(this);
         preloadWordsIfNeeded();
 
-        // Ловим выбранную тему из TopicActivity
+        // 1. Принимаем ID темы и прямое РУССКОЕ название темы из TopicActivity
         String selectedTopicId = getIntent().getStringExtra("TOPIC_ID");
+        String selectedCategoryName = getIntent().getStringExtra("TOPIC_NAME_RU");
 
-        // Переключаем запросы к БД по вашей новой логике
+        // 2. Универсальная загрузка слов на основе переданных данных
         if (selectedTopicId != null && selectedTopicId.equals("review")) {
             // Режим Повторения: подгружаем ВСЕ слова базы данных
             wordList = db.wordDao().getAllWordsForReview();
         } else {
-            // Обычные категории: подгружаем ВСЕ слова темы без скрытия выученных
-            String categoryName = "Транспорт"; // По умолчанию
-            if (selectedTopicId != null) {
-                if (selectedTopicId.equals("food")) categoryName = "Еда";
-                else if (selectedTopicId.equals("shopping")) categoryName = "Покупки";
-                else if (selectedTopicId.equals("family")) categoryName = "Семья";
-            }
+            // Динамические категории: берем то имя, которое пришло. Если пусто — ставим "Транспорт"
+            String categoryName = (selectedCategoryName != null) ? selectedCategoryName : "Транспорт";
             wordList = db.wordDao().getWordsForLesson("A1", categoryName);
         }
 
+        // Выводим первое слово на экран
         displayCurrentWord();
 
-        // Клик по карточке: показываем перевод + ОЗВУЧКА
+        // Клик по карточке: показываем перевод + запускаем ОЗВУЧКУ
         binding.wordCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Клик по кнопке "Знаю" с вашей новой круговой логикой и задержкой
+        // Клик по кнопке "Знаю" с круговой логикой и задержкой
         binding.btnKnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (wordList == null || wordList.isEmpty()) return;
 
                 Word currentWord = wordList.get(currentWordIndex);
-                currentWord.setLearned(true); // Если тут ошибка, проверьте метод в Word.java
+                currentWord.setLearned(true);
 
                 new Thread(new Runnable() {
                     @Override
@@ -136,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Метод отображения слова со сменой цвета карточки
     private void displayCurrentWord() {
         if (wordList != null && !wordList.isEmpty() && currentWordIndex < wordList.size()) {
             Word word = wordList.get(currentWordIndex);
@@ -145,9 +136,9 @@ public class MainActivity extends AppCompatActivity {
             binding.tvTranslation.setVisibility(View.INVISIBLE);
             binding.btnKnow.setEnabled(true);
 
-            // Смена цвета карточки на основе прогресса
-            if (word.isLearned()) { // Если тут ошибка, проверьте имя геттера в Word.java (может быть getLearned() или isLearned())
-                binding.wordCard.setBackgroundColor(android.graphics.Color.parseColor("#E8F5E9")); // Светло-зеленый
+            // Перекраска карточки, если слово уже выучено
+            if (word.isLearned()) {
+                binding.wordCard.setBackgroundColor(android.graphics.Color.parseColor("#E8F5E9"));
                 binding.tvGermanWord.setTextColor(android.graphics.Color.parseColor("#2E7D32"));
             } else {
                 binding.wordCard.setBackgroundColor(android.graphics.Color.WHITE);
@@ -180,5 +171,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 }
+
 
 
