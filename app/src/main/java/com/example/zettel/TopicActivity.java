@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -28,6 +29,10 @@ public class TopicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Темы обучения");
+        }
 
         rvTopics = findViewById(R.id.rvTopics);
         rvTopics.setLayoutManager(new LinearLayoutManager(this));
@@ -149,6 +154,40 @@ public class TopicActivity extends AppCompatActivity {
             builder.setNegativeButton("Отмена", null);
             builder.create().show();
         });
+        // --- ДИНАМИЧЕСКИЙ ВЫВОД КНОПКИ НАЗАД ВНИЗУ ЭКРАНА ---
+        try {
+            // Находим родительский контейнер, в котором лежит кнопка добавления слова
+            android.view.ViewGroup parentLayout = (android.view.ViewGroup) btnAddWord.getParent();
+
+            if (parentLayout != null) {
+                // Создаем новую кнопку программно
+                Button btnBackToMenu = new Button(this);
+
+                // Настраиваем внешний вид кнопки
+                btnBackToMenu.setText("В главное меню");
+                btnBackToMenu.setTextColor(android.graphics.Color.WHITE);
+                btnBackToMenu.setBackgroundColor(android.graphics.Color.parseColor("#3F51B5")); // Синий цвет под стиль уровней
+
+                // Задаем размеры и отступы
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                params.setMargins(0, 24, 0, 0); // Отступ сверху от кнопки добавления слова
+                btnBackToMenu.setLayoutParams(params);
+
+                // Находим индекс кнопки добавления слова, чтобы вставить новую кнопку строго ПОД ней
+                int index = parentLayout.indexOfChild(btnAddWord);
+                parentLayout.addView(btnBackToMenu, index + 1);
+
+                // Логика нажатия: закрываем экран и возвращаемся в меню
+                btnBackToMenu.setOnClickListener(vBack -> finish());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // ----------------------------------------------------
+
     }
 
     @Override
@@ -182,6 +221,15 @@ public class TopicActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putSerializable("SAVED_TOPICS", topics);
         outState.putString("SAVED_LEVEL", currentSelectedLevel);
+    }
+    // ОБРАБОТЧИК НАЖАТИЯ СИСТЕМНОЙ СТРЕЛКИ НАЗАД (В Action Bar)
+    @Override
+    public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // Закрываем экран тем и безопасно возвращаемся в главное меню (StartActivity)
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

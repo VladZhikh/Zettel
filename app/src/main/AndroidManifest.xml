@@ -10,10 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Zettel"> <!-- Ваша тема может называться иначе -->
 
-
-        <!-- 1. ТЕПЕРЬ ЭТОТ ЭКРАН СТАРТУЕТ ПЕРВЫМ -->
+        <!-- 1. НОВЫЙ СТАРТОВЫЙ ЭКРАН ТЕПЕРЬ ЗАПУСКАЕТСЯ ПЕРВЫМ -->
         <activity
-            android:name=".TopicActivity"
+            android:name=".StartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +20,24 @@
             </intent-filter>
         </activity>
 
-        <!-- 2. А ЭТОТ ЭКРАН БУДЕТ ОТКРЫВАТЬСЯ ВТОРОЙ ПО СЧЕТУ -->
+        <!-- 2. Оригинальный MainActivity (Карточки на весь экран) -->
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity android:name=".ReviewActivity" android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".TopicActivity" />
+
+        <!-- 3. Экран ТЕМ -->
+        <activity
+            android:name=".TopicActivity"
+            android:exported="false"
+            android:parentActivityName=".StartActivity" />
+
+        <!-- 4. Экран повторения слов (список) -->
+        <activity
+            android:name=".ReviewActivity"
+            android:exported="false"
+            android:parentActivityName=".StartActivity" />
+
     </application>
 
 </manifest>
