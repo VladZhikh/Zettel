@@ -38,6 +38,13 @@
             android:exported="false"
             android:parentActivityName=".StartActivity" />
 
+        <!-- Новый экран режима тестирования -->
+        <activity
+            android:name=".QuizActivity"
+            android:exported="false"
+            android:parentActivityName=".StartActivity" />
+
+
     </application>
 
 </manifest>

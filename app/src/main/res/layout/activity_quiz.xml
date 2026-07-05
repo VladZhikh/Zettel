@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://android.com"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FAFAFA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Счетчик вопросов, например: "Вопрос: 3 / 10" -->
+        <TextView
+            android:id="@+id/tvQuizProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Вопрос: 1 / 10"
+            android:textColor="#5C6BC0"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Само загаданное слово -->
+        <TextView
+            android:id="@+id/tvQuestionWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="Das Buch"
+            android:textColor="#1A237E"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- 3 кнопки для вариантов ответа -->
+        <Button
+            android:id="@+id/btnOption1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:text="Вариант 1"
+            android:textSize="16sp"
+            android:backgroundTint="#E8EAF6"
+            android:textColor="#1A237E" />
+
+        <Button
+            android:id="@+id/btnOption2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:text="Вариант 2"
+            android:textSize="16sp"
+            android:backgroundTint="#E8EAF6"
+            android:textColor="#1A237E" />
+
+        <Button
+            android:id="@+id/btnOption3"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="40dp"
+            android:text="Вариант 3"
+            android:textSize="16sp"
+            android:backgroundTint="#E8EAF6"
+            android:textColor="#1A237E" />
+
+        <!-- Кнопка выхода в меню -->
+        <Button
+            android:id="@+id/btnExitQuiz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Завершить тест"
+            android:backgroundTint="#FF9800"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+</ScrollView>

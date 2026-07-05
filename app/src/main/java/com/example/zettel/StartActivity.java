@@ -17,6 +17,7 @@ public class StartActivity extends AppCompatActivity {
         Button btnLevelB1 = findViewById(R.id.btnLevelB1);
         Button btnLevelB2 = findViewById(R.id.btnLevelB2);
         Button btnOpenTopics = findViewById(R.id.btnOpenTopics);
+        Button btnStartQuiz = findViewById(R.id.btnStartQuiz);
 
         // Кнопки уровней ведем на ReviewActivity (или куда вам захочется позже)
         btnLevelA1.setOnClickListener(v -> startReviewSession("A1"));
@@ -27,6 +28,10 @@ public class StartActivity extends AppCompatActivity {
         // Нижняя кнопка открывает экран ТЕМ (TopicActivity)
         btnOpenTopics.setOnClickListener(v -> {
             Intent intent = new Intent(StartActivity.this, TopicActivity.class);
+            startActivity(intent);
+        });
+        btnStartQuiz.setOnClickListener(v -> {
+            Intent intent = new Intent(StartActivity.this, QuizActivity.class);
             startActivity(intent);
         });
     }
