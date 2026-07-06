@@ -168,45 +168,55 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Тот самый метод автозаполнения базы слов разной сложности
+    // метод автозаполнения базы слов разной сложности
     private void preloadWordsIfNeeded() {
-        if (db.wordDao().getAllWords().isEmpty()) {
+        try {
+            WordDao dao = db.wordDao();
 
-            // --- КАТЕГОРИЯ: ТРАНСПОРТ ---
-            // Уровень A1
-            db.wordDao().insertWord(new Word("Das Auto", "Автомобиль", "Транспорт", "A1", "Самолет, Корабль, Поезд"));
-            db.wordDao().insertWord(new Word("Der Zug", "Поезд", "Транспорт", "A1", "Велосипед, Автобус, Машина"));
-            db.wordDao().insertWord(new Word("Das Fahrrad", "Велосипед", "Транспорт", "A1", "Трамвай, Самолет, Метро"));
-            // Уровень A2
-            db.wordDao().insertWord(new Word("Der LKW", "Грузовик", "Транспорт", "A2", "Лодка, Вертолет, Мотоцикл"));
-            db.wordDao().insertWord(new Word("Das Raumschiff", "Космический корабль", "Транспорт", "A2", "Автобус, Поезд, Такси"));
-            // Уровень B1
-            db.wordDao().insertWord(new Word("Das Flugzeug", "Самолет", "Транспорт", "B1", "Самокат, Ролики, Скейт"));
+            // 1. Открываем и читаем наш новый файл words.json из папки assets
+            java.io.InputStream inputStream = getAssets().open("words.json");
+            java.io.InputStreamReader reader = new java.io.InputStreamReader(inputStream, java.nio.charset.StandardCharsets.UTF_8);
 
-            // --- КАТЕГОРИЯ: ЕДА ---
-            // Уровень A1
-            db.wordDao().insertWord(new Word("Das Essen", "Еда", "Еда", "A1", "Яблоко, Хлеб, Вода"));
-            db.wordDao().insertWord(new Word("Der Apfel", "Яблоко", "Еда", "A1", "Мясо, Молоко, Рыба"));
-            db.wordDao().insertWord(new Word("Das Brot", "Хлеб", "Еда", "A1", "Сыр, Масло, Яйцо"));
-            // Уровень A2
-            db.wordDao().insertWord(new Word("Die Gurke", "Огурец", "Еда", "A2", "Картошка, Лук, Чеснок"));
-            db.wordDao().insertWord(new Word("Der Käse", "Сыр", "Еда", "A2", "Колбаса, Ветчина, Соль"));
+            // 2. Распаковываем JSON в список объектов Java
+            com.google.gson.Gson gson = new com.google.gson.Gson();
+            java.lang.reflect.Type listType = new com.google.gson.reflect.TypeToken<List<Word>>(){}.getType();
+            List<Word> wordsFromJson = gson.fromJson(reader, listType);
 
-            // --- КАТЕГОРИЯ: ПОКУПКИ ---
-            // Уровень A1
-            db.wordDao().insertWord(new Word("Kaufen", "Покупать", "Покупки", "A1", "Продавать, Платить, Искать"));
-            db.wordDao().insertWord(new Word("Das Geld", "Деньги", "Покупки", "A1", "Кошелек, Карта, Чек"));
-            // Уровень A2
-            db.wordDao().insertWord(new Word("Der Rabatt", "Скидка", "Покупки", "A2", "Цена, Касса, Товар"));
-            db.wordDao().insertWord(new Word("Teuer", "Дорогой", "Покупки", "A2", "Дешевый, Бесплатный, Новый"));
+            reader.close();
 
-            // --- КАТЕГОРИЯ: СЕМЬЯ ---
-            // Уровень A1
-            db.wordDao().insertWord(new Word("Die Familie", "Семья", "Семья", "A1", "Мама, Папа, Друг"));
-            db.wordDao().insertWord(new Word("Die Mutter", "Мать", "Семья", "A1", "Сестра, Брат, Бабушка"));
-            // Уровень A2
-            db.wordDao().insertWord(new Word("Die Eltern", "Родители", "Семья", "A2", "Дети, Внуки, Коллеги"));
-            db.wordDao().insertWord(new Word("Der Bruder", "Брат", "Семья", "A2", "Дядя, Тетя, Племянник"));
+            if (wordsFromJson != null && !wordsFromJson.isEmpty()) {
+                // 3. Вытаскиваем слова, которые УЖЕ РЕАЛЬНО ЕСТЬ в базе данных, чтобы избежать дубликатов
+                List<Word> currentWordsInDb = dao.getAllWords();
+
+                // Собираем немецкие слова в HashSet для моментального поиска в памяти
+                java.util.HashSet<String> existingGermanKeys = new java.util.HashSet<>();
+                if (currentWordsInDb != null) {
+                    for (Word w : currentWordsInDb) {
+                        if (w.getGermanWord() != null) {
+                            existingGermanKeys.add(w.getGermanWord().trim().toLowerCase());
+                        }
+                    }
+                }
+
+                // 4. Оборачиваем в транзакцию Room для мгновенной пакетной вставки (защита от зависаний)
+                db.runInTransaction(() -> {
+                    for (Word word : wordsFromJson) {
+                        if (word.getGermanWord() != null) {
+                            String jsonWordKey = word.getGermanWord().trim().toLowerCase();
+
+                            // Если слова еще нет в базе — добавляем
+                            if (!existingGermanKeys.contains(jsonWordKey)) {
+                                dao.insertWord(word);
+                            }
+                        }
+                    }
+                });
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Если в JSON опечатка (например, забыли запятую), приложение не упадет, а просто выведет ошибку в лог
+            android.util.Log.e("Zettel_JSON", "Ошибка при импорте JSON: " + e.getMessage());
         }
     }
 

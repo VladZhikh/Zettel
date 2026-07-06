@@ -29,7 +29,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private int currentQuestionIndex = 0;
     private int correctAnswersCount = 0; // СЧЕТЧИК ПРАВИЛЬНЫХ ОТВЕТОВ
-    private final int TOTAL_QUESTIONS = 10; // Сколько вопросов будет в одном тесте
+    private final int TOTAL_QUESTIONS = 30; // Сколько вопросов будет в одном тесте
 
     private Word currentCorrectWord;
     private final Random random = new Random();
