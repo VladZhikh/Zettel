@@ -19,10 +19,14 @@
             android:id="@+id/btnBack"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Назад"
             android:src="@android:drawable/ic_menu_revert"
-            app:tint="#212529" />
+            android:contentDescription="Назад в меню"
+            app:tint="#1A237E" />
+
 
         <TextView
             android:layout_width="wrap_content"
