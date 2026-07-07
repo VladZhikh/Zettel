@@ -7,6 +7,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -34,20 +36,48 @@ public class ReviewActivity extends AppCompatActivity {
         // Инициализируем голосовой движок
         initTextToSpeech();
 
-        // Загружаем ВСЕ слова из базы данных в фоновом потоке
+        // 1. Считываем выбранный уровень сложности из Стартового окна
+        String selectedDifficulty = null;
+        if (getIntent() != null && getIntent().hasExtra("DIFFICULTY_LEVEL")) {
+            selectedDifficulty = getIntent().getStringExtra("DIFFICULTY_LEVEL");
+        }
+
+        final String finalDifficulty = selectedDifficulty;
+
+        // 2. Загружаем и фильтруем слова в фоновом потоке
         new Thread(() -> {
             List<Word> allWords = db.wordDao().getAllWordsForReview();
+            List<Word> filteredWords = new ArrayList<>();
 
-            // Передаем список в адаптер на главном потоке интерфейса
+            if (allWords != null) {
+                for (Word word : allWords) {
+                    // Безопасно получаем уровень слова из базы данных (защита от null)
+                    String wordLevel = (word.getLevel() != null) ? word.getLevel().trim() : "";
+
+                    // Если уровень не был передан (например, зашли из другого места) — показываем всё.
+                    // Если уровень передан — проверяем на точное совпадение (без учета регистра букв)
+                    if (finalDifficulty == null || wordLevel.equalsIgnoreCase(finalDifficulty.trim())) {
+                        filteredWords.add(word);
+                    }
+                }
+            }
+
+            // Передаем отфильтрованный список в адаптер на главном потоке интерфейса
             runOnUiThread(() -> {
-                adapter = new WordAdapter(allWords, germanWord -> {
+                adapter = new WordAdapter(filteredWords, germanWord -> {
                     // Логика клика по динамику: озвучиваем слово
                     speakGerman(germanWord);
                 });
                 rvReviewWords.setAdapter(adapter);
+
+                // Если слов этого уровня вдруг не нашлось в базе — покажем уведомление
+                if (filteredWords.isEmpty() && finalDifficulty != null) {
+                    Toast.makeText(ReviewActivity.this, "Пока нет слов для уровня " + finalDifficulty, Toast.LENGTH_LONG).show();
+                }
             });
         }).start();
     }
+
 
     private void initTextToSpeech() {
         textToSpeech = new TextToSpeech(this, status -> {
