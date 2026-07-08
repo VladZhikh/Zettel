@@ -44,6 +44,13 @@
             android:exported="false"
             android:parentActivityName=".StartActivity" />
 
+        <!-- Новый экран игры с артиклями "Der, Die, Das" -->
+        <activity
+            android:name=".ArticlesGameActivity"
+            android:exported="false"
+            android:parentActivityName=".StartActivity" />
+
+
 
     </application>
 

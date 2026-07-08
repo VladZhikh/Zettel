@@ -38,36 +38,85 @@
     "germanWord": "Der LKW",
     "russianTranslation": "Грузовик",
     "category": "Транспорт",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Лодка, Вертолет, Мотоцикл"
   },
   {
     "germanWord": "Das Raumschiff",
     "russianTranslation": "Космический корабль",
     "category": "Транспорт",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Автобус, Поезд, Такси"
   },
   {
     "germanWord": "Das U-Boot",
     "russianTranslation": "Подводная лодка",
     "category": "Транспорт",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Грузовик, Велосипед, Самолет"
   },
   {
     "germanWord": "Das Schiff",
     "russianTranslation": "Корабль",
     "category": "Транспорт",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Поезд, Машина, Самокат"
   },
   {
     "germanWord": "Der Hubschrauber",
     "russianTranslation": "Вертолет",
     "category": "Транспорт",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Автобус, Метро, Велосипед"
+  },
+  {
+    "germanWord": "Das Taxi",
+    "russianTranslation": "Такси",
+    "category": "Транспорт",
+    "level": "A1",
+    "wrongOptions": "Автобус, Метро, Велосипед"
+  },
+  {
+    "germanWord": "Die Straßenbahn",
+    "russianTranslation": "Трамвай",
+    "category": "Транспорт",
+    "level": "A1",
+    "wrongOptions": "Автобус, Метро, Велосипед"
+  },
+  {
+    "germanWord": "Das Motorrad",
+    "russianTranslation": "Мотоцикл",
+    "category": "Транспорт",
+    "level": "A1",
+    "wrongOptions": "Машина, Трамвай, Велосипед"
+  },
+  {
+    "germanWord": "Das Boot",
+    "russianTranslation": "Лодка",
+    "category": "Транспорт",
+    "level": "A1",
+    "wrongOptions": "Машина, Трамвай, Велосипед"
+  },
+  {
+    "germanWord": "Die Haltestelle",
+    "russianTranslation": "Остановка",
+    "category": "Транспорт",
+    "level": "A1",
+    "wrongOptions": "Вокзал, Трамвай, Расписание"
+  },
+  {
+    "germanWord": "Der Bahnhof",
+    "russianTranslation": "Вокзал",
+    "category": "Транспорт",
+    "level": "A1",
+    "wrongOptions": "Остановка, Трамвай, Расписание"
+  },
+  {
+    "germanWord": "Der Flughafen",
+    "russianTranslation": "Аэропорт",
+    "category": "Транспорт",
+    "level": "A1",
+    "wrongOptions": "Остановка, Вокзал, Расписание"
   },
   {
     "germanWord": "Das Essen",
@@ -108,35 +157,35 @@
     "germanWord": "Die Gurke",
     "russianTranslation": "Огурец",
     "category": "Еда",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Картошка, Лук, Чеснок"
   },
   {
     "germanWord": "Der Käse",
     "russianTranslation": "Сыр",
     "category": "Еда",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Колбаса, Ветчина, Соль"
   },
   {
     "germanWord": "Die Tomate",
     "russianTranslation": "Помидор",
     "category": "Еда",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Лимон, Банан, Апельсин"
   },
   {
     "germanWord": "Das Hähnchen",
     "russianTranslation": "Курица",
     "category": "Еда",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Рыба, Рис, Макароны"
   },
   {
     "germanWord": "Der Salat",
     "russianTranslation": "Салат",
     "category": "Еда",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Торт, Шоколад, Мед"
   },
   {
@@ -178,35 +227,35 @@
     "germanWord": "Der Rabatt",
     "russianTranslation": "Скидка",
     "category": "Покупки",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Цена, Касса, Товар"
   },
   {
     "germanWord": "Teuer",
     "russianTranslation": "Дорогой",
     "category": "Покупки",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Дешевый, Бесплатный, Новый"
   },
   {
     "germanWord": "Billig",
     "russianTranslation": "Дешевый",
     "category": "Покупки",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Дорогой, Чистый, Сломанный"
   },
   {
     "germanWord": "Die Quittung",
     "russianTranslation": "Чек",
     "category": "Покупки",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Карта, Кошелек, Монета"
   },
   {
     "germanWord": "Verkaufen",
     "russianTranslation": "Продавать",
     "category": "Покупки",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Покупать, Менять, Дарить"
   },
   {
@@ -248,35 +297,35 @@
     "germanWord": "Die Eltern",
     "russianTranslation": "Родители",
     "category": "Семья",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Дети, Внуки, Коллеги"
   },
   {
     "germanWord": "Der Bruder",
     "russianTranslation": "Брат",
     "category": "Семья",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Дядя, Тетя, Племянник"
   },
   {
     "germanWord": "Die Schwester",
     "russianTranslation": "Сестра",
     "category": "Семья",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Бабушка, Мать, Подруга"
   },
   {
     "germanWord": "Die Großeltern",
     "russianTranslation": "Бабушка и дедушка",
     "category": "Семья",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Родители, Дети, Соседи"
   },
   {
     "germanWord": "Der Verwandte",
     "russianTranslation": "Родственник",
     "category": "Семья",
-    "level": "A2",
+    "level": "A1",
     "wrongOptions": "Друг, Прохожий, Враг"
   }
 ]

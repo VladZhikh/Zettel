@@ -18,6 +18,8 @@ public class StartActivity extends AppCompatActivity {
         Button btnLevelB2 = findViewById(R.id.btnLevelB2);
         Button btnOpenTopics = findViewById(R.id.btnOpenTopics);
         Button btnStartQuiz = findViewById(R.id.btnStartQuiz);
+        Button btnStartArticlesGame = findViewById(R.id.btnStartArticlesGame);
+
 
         // Кнопки уровней ведем на ReviewActivity (или куда вам захочется позже)
         btnLevelA1.setOnClickListener(v -> startReviewSession("A1"));
@@ -39,6 +41,11 @@ public class StartActivity extends AppCompatActivity {
             intent.putExtra("DIFFICULTY_LEVEL", "A1");
             startActivity(intent);
         });
+        btnStartArticlesGame.setOnClickListener(v -> {
+            Intent intent = new Intent(StartActivity.this, ArticlesGameActivity.class);
+            startActivity(intent);
+        });
+
 
     }
 
