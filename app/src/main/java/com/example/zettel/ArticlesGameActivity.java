@@ -17,19 +17,19 @@ import java.util.Locale;
 
 public class ArticlesGameActivity extends AppCompatActivity {
 
-    private TextView tvScore, tvGameWord, tvWordTranslation;
+    private TextView tvGameWord, tvWordTranslation, tvLiveResult;
     private Button btnDer, btnDie, btnDas, btnExitGame;
 
     private AppDatabase db;
     private TextToSpeech textToSpeech;
 
-    private List<Word> nounWords = new ArrayList<>(); // Список существительных с артиклями
+    private List<Word> nounWords = new ArrayList<>();
     private int currentWordIndex = 0;
-    private int score = 0;
+    private int correctAnswersCount = 0; // Счётчик правильных ответов вместо очков
 
     private Word currentWord;
-    private String correctArticle = ""; // Хранит правильный артикль ("der", "die" или "das")
-    private boolean isAnswered = false; // Защита от спам-кликов
+    private String correctArticle = "";
+    private boolean isAnswered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +37,9 @@ public class ArticlesGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_articles_game);
 
         // Инициализация UI
-        tvScore = findViewById(R.id.tvScore);
         tvGameWord = findViewById(R.id.tvGameWord);
         tvWordTranslation = findViewById(R.id.tvWordTranslation);
+        tvLiveResult = findViewById(R.id.tvLiveResult); // Наше новое поле внизу
         btnDer = findViewById(R.id.btnDer);
         btnDie = findViewById(R.id.btnDie);
         btnDas = findViewById(R.id.btnDas);
@@ -47,12 +47,10 @@ public class ArticlesGameActivity extends AppCompatActivity {
 
         db = AppDatabase.getInstance(this);
 
-        // Запуск TTS для озвучки правильного ответа
         initTextToSpeech();
 
         btnExitGame.setOnClickListener(v -> finish());
 
-        // Загружаем существительные из базы
         loadNounsFromDatabase();
     }
 
@@ -78,7 +76,6 @@ public class ArticlesGameActivity extends AppCompatActivity {
             if (allWords != null) {
                 for (Word w : allWords) {
                     String gWord = (w.getGermanWord() != null) ? w.getGermanWord().trim().toLowerCase() : "";
-                    // Проверяем, начинается ли слово с известного артикля
                     if (gWord.startsWith("der ") || gWord.startsWith("die ") || gWord.startsWith("das ")) {
                         nounWords.add(w);
                     }
@@ -87,15 +84,13 @@ public class ArticlesGameActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 if (nounWords.size() < 3) {
-                    Toast.makeText(this, "В базе слишком мало существительных с артиклями (Der, Die, Das)!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "В базе слишком мало существительных с артиклями!", Toast.LENGTH_LONG).show();
                     finish();
                     return;
                 }
 
-                // Перемешиваем слова, чтобы игра каждый раз была уникальной
                 Collections.shuffle(nounWords);
 
-                // Ограничим одну сессию игры, например, 15 словами (или сколько есть в базе, если меньше)
                 if (nounWords.size() > 15) {
                     nounWords = nounWords.subList(0, 15);
                 }
@@ -109,33 +104,30 @@ public class ArticlesGameActivity extends AppCompatActivity {
         isAnswered = false;
         resetButtonColors();
 
-        tvScore.setText("Очки: " + score);
+        // ИСПРАВЛЕНО: Показываем текущий прогресс в текстовом поле внизу (например: Результат: 2 из 5)
+        tvLiveResult.setText("Результат: " + correctAnswersCount + " из " + currentWordIndex);
 
         currentWord = nounWords.get(currentWordIndex);
         String fullGermanWord = currentWord.getGermanWord().trim();
 
-        // Перевод (подсказка для пользователя)
         tvWordTranslation.setText("(" + currentWord.getRussianTranslation() + ")");
 
-        // Извлекаем артикль и чистое слово
         String lowerWord = fullGermanWord.toLowerCase();
         String cleanWord = fullGermanWord;
 
         if (lowerWord.startsWith("der ")) {
             correctArticle = "der";
-            cleanWord = fullGermanWord.substring(4); // Отрезаем первые 4 символа "Der "
+            cleanWord = fullGermanWord.substring(4);
         } else if (lowerWord.startsWith("die ")) {
             correctArticle = "die";
-            cleanWord = fullGermanWord.substring(4); // Отрезаем первые 4 символа "Die "
+            cleanWord = fullGermanWord.substring(4);
         } else if (lowerWord.startsWith("das ")) {
             correctArticle = "das";
-            cleanWord = fullGermanWord.substring(4); // Отрезаем первые 4 символа "Das "
+            cleanWord = fullGermanWord.substring(4);
         }
 
-        // Выводим «голую» основу существительного на экран
         tvGameWord.setText(cleanWord);
 
-        // Вешаем клики на кнопки
         btnDer.setOnClickListener(v -> checkArticleAnswer("der", btnDer));
         btnDie.setOnClickListener(v -> checkArticleAnswer("die", btnDie));
         btnDas.setOnClickListener(v -> checkArticleAnswer("das", btnDas));
@@ -145,24 +137,23 @@ public class ArticlesGameActivity extends AppCompatActivity {
         if (isAnswered) return;
         isAnswered = true;
 
-        // При ответе сразу озвучиваем слово целиком С АРТИКЛЕМ, чтобы тренировать слуховую память!
         speakGerman(currentWord.getGermanWord());
 
         if (chosenArticle.equals(correctArticle)) {
-            // Верно: красим кнопку в зеленый и добавляем 10 очков
+            // ИСПРАВЛЕНО: Красим только одну выбранную кнопку в зеленый
             clickedButton.setBackgroundColor(Color.parseColor("#4CAF50"));
             clickedButton.setTextColor(Color.WHITE);
-            score += 10;
+            correctAnswersCount++;
         } else {
-            // Ошибка: выбранную в красный, а правильную подсвечиваем ее родным цветом
+            // ИСПРАВЛЕНО: Выбранную ошибочную кнопку в красный, а правильную подсвечиваем нейтрально-зеленым
             clickedButton.setBackgroundColor(Color.parseColor("#F44336"));
             clickedButton.setTextColor(Color.WHITE);
             highlightCorrectButton();
         }
 
-        tvScore.setText("Очки: " + score);
+        // Обновляем текущий живой результат сразу после нажатия кнопки
+        tvLiveResult.setText("Результат: " + correctAnswersCount + " из " + (currentWordIndex + 1));
 
-        // Задержка 1.5 секунды, чтобы увидеть результат, и идем дальше
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             currentWordIndex++;
             if (currentWordIndex < nounWords.size()) {
@@ -187,30 +178,33 @@ public class ArticlesGameActivity extends AppCompatActivity {
     }
 
     private void resetButtonColors() {
-        // Возвращаем кнопкам их дефолтные яркие цвета из XML темы
-        btnDer.setBackgroundColor(Color.parseColor("#2196F3"));
-        btnDer.setTextColor(Color.WHITE);
+        // ИСПРАВЛЕНО: Сбрасываем цвета кнопок к красивому нейтральному стилю (как в XML)
+        int defaultBgColor = Color.parseColor("#E8EAF6");
+        int defaultTextColor = Color.parseColor("#1A237E");
 
-        btnDie.setBackgroundColor(Color.parseColor("#E91E63"));
-        btnDie.setTextColor(Color.WHITE);
-
-        btnDas.setBackgroundColor(Color.parseColor("#4CAF50"));
-        btnDas.setTextColor(Color.WHITE);
+        btnDer.setBackgroundColor(defaultBgColor);
+        btnDer.setTextColor(defaultTextColor);
+        btnDie.setBackgroundColor(defaultBgColor);
+        btnDie.setTextColor(defaultTextColor);
+        btnDas.setBackgroundColor(defaultBgColor);
+        btnDas.setTextColor(defaultTextColor);
     }
 
     private void showGameResults() {
+        // В конце игры также дублируем финальный текст в нижнее поле
+        tvLiveResult.setText("Итог: " + correctAnswersCount + " из " + nounWords.size());
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Игра окончена! 🏁");
 
-        int maxPossibleScore = nounWords.size() * 10;
-        String msg = "Вы набрали: " + score + " из " + maxPossibleScore + " очков.\n\n";
+        String msg = "Ваш общий результат: " + correctAnswersCount + " из " + nounWords.size() + " правильных ответов.\n\n";
 
-        if (score == maxPossibleScore) {
-            msg += "Отличный результат! Вы идеально знаете немецкие артикли! 🇩🇪💯";
-        } else if (score >= maxPossibleScore / 2) {
-            msg += "Хороший результат! Но есть куда расти. Потренируйтесь еще! 💪";
+        if (correctAnswersCount == nounWords.size()) {
+            msg += "Идеально! Вы потрясающе чувствуете немецкие артикли! 🇩🇪💯";
+        } else if (correctAnswersCount >= nounWords.size() / 2) {
+            msg += "Хороший результат! Повторите карточки и попробуйте улучшить счет! 💪";
         } else {
-            msg += "Артикли — сложная тема. Повторите карточки категорий и возвращайтесь! 📖";
+            msg += "Артикли — коварная тема. Почаще заглядывайте сюда для практики! 📖";
         }
 
         builder.setMessage(msg);
@@ -228,4 +222,5 @@ public class ArticlesGameActivity extends AppCompatActivity {
         super.onDestroy();
     }
 }
+
 

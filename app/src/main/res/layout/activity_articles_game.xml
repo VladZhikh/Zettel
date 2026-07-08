@@ -13,26 +13,16 @@
         android:padding="24dp"
         android:gravity="center_horizontal">
 
-        <!-- Счетчик очков -->
-        <TextView
-            android:id="@+id/tvScore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Очки: 0"
-            android:textColor="#3F51B5"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <!-- Инструкция -->
+        <!-- Инструкция сверху -->
         <TextView
             android:id="@+id/tvInstruction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:text="Какой артикль у этого слова?"
             android:textColor="#757575"
-            android:textSize="14sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <!-- Загаданное слово (БЕЗ артикля) -->
         <TextView
@@ -47,7 +37,7 @@
             android:textSize="38sp"
             android:textStyle="bold" />
 
-        <!-- Перевод-подсказка (мелким шрифтом чуть ниже) -->
+        <!-- Перевод-подсказка -->
         <TextView
             android:id="@+id/tvWordTranslation"
             android:layout_width="wrap_content"
@@ -58,13 +48,13 @@
             android:textSize="16sp"
             android:textStyle="italic" />
 
-        <!-- Горизонтальный ряд из 3-х кнопок артиклей -->
+        <!-- Горизонтальный ряд из 3-х кнопок артиклей (ИСПРАВЛЕНО: Теперь они нейтральные) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="3"
-            android:layout_marginBottom="48dp">
+            android:layout_marginBottom="32dp">
 
             <Button
                 android:id="@+id/btnDer"
@@ -75,8 +65,8 @@
                 android:text="DER"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:backgroundTint="#2196F3"
-                android:textColor="#FFFFFF" />
+                android:backgroundTint="#E8EAF6"
+                android:textColor="#1A237E" />
 
             <Button
                 android:id="@+id/btnDie"
@@ -88,8 +78,8 @@
                 android:text="DIE"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:backgroundTint="#E91E63"
-                android:textColor="#FFFFFF" />
+                android:backgroundTint="#E8EAF6"
+                android:textColor="#1A237E" />
 
             <Button
                 android:id="@+id/btnDas"
@@ -100,9 +90,20 @@
                 android:text="DAS"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:backgroundTint="#4CAF50"
-                android:textColor="#FFFFFF" />
+                android:backgroundTint="#E8EAF6"
+                android:textColor="#1A237E" />
         </LinearLayout>
+
+        <!-- НОВОЕ: Текстовое поле живого результата внизу -->
+        <TextView
+            android:id="@+id/tvLiveResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Результат: 0 из 0"
+            android:textColor="#3F51B5"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <!-- Кнопка выхода -->
         <Button
@@ -116,3 +117,4 @@
 
     </LinearLayout>
 </ScrollView>
+

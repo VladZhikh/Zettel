@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Zettel"> <!-- Ваша тема может называться иначе -->
 
-        <!-- 1. НОВЫЙ СТАРТОВЫЙ ЭКРАН ТЕПЕРЬ ЗАПУСКАЕТСЯ ПЕРВЫМ -->
+        <!-- 1. СТАРТОВЫЙ ЭКРАН ТЕПЕРЬ ЗАПУСКАЕТСЯ ПЕРВЫМ -->
         <activity
             android:name=".StartActivity"
             android:exported="true">
@@ -38,16 +38,18 @@
             android:exported="false"
             android:parentActivityName=".StartActivity" />
 
-        <!-- Новый экран режима тестирования -->
+        <!-- Экран режима тестирования -->
         <activity
             android:name=".QuizActivity"
             android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:parentActivityName=".StartActivity" />
 
-        <!-- Новый экран игры с артиклями "Der, Die, Das" -->
+        <!-- Экран игры с артиклями "Der, Die, Das" -->
         <activity
             android:name=".ArticlesGameActivity"
             android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:parentActivityName=".StartActivity" />
 
 
