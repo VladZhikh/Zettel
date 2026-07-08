@@ -81,20 +81,59 @@ public class QuizActivity extends AppCompatActivity {
 
     private void loadWordsFromDatabase() {
         new Thread(() -> {
+            // Загружаем абсолютно все слова для базы дистракторов (неправильных ответов)
             allWords = db.wordDao().getAllWordsForReview();
 
+            // Читаем фильтры из Intent
+            String mode = getIntent().getStringExtra("MODE");
+            String difficultyFilter = getIntent().getStringExtra("DIFFICULTY_LEVEL");
+            String categoryFilter = getIntent().getStringExtra("SELECTED_CATEGORY");
+
+            List<Word> matchedWords = new ArrayList<>();
+
+            if (allWords != null) {
+                for (Word word : allWords) {
+                    String wordLevel = (word.getLevel() != null) ? word.getLevel().trim() : "";
+                    String wordCategory = (word.getCategory() != null) ? word.getCategory().trim() : "";
+
+                    boolean matches = true;
+
+                    // Если режим "По уровням"
+                    if ("BY_LEVEL".equals(mode) && difficultyFilter != null) {
+                        matches = wordLevel.equalsIgnoreCase(difficultyFilter.trim());
+                    }
+                    // Если режим "По темам"
+                    else if ("BY_TOPIC".equals(mode)) {
+                        boolean matchesLevel = (difficultyFilter == null) || wordLevel.equalsIgnoreCase(difficultyFilter.trim());
+                        boolean matchesCat = (categoryFilter == null) || wordCategory.equalsIgnoreCase(categoryFilter.trim());
+                        matches = matchesLevel && matchesCat;
+                    }
+
+                    if (matches) {
+                        matchedWords.add(word);
+                    }
+                }
+            }
+
             runOnUiThread(() -> {
+                // Если вообще ни одного слова по фильтру не нашлось — подстрахуем себя и возьмем всю базу
+                if (matchedWords.isEmpty()) {
+                    matchedWords.addAll(allWords);
+                    Toast.makeText(this, "Пока нет слов по этому фильтру. Тест по всей базе!", Toast.LENGTH_SHORT).show();
+                }
+
                 if (allWords.size() < 3) {
-                    Toast.makeText(this, "Нужно добавить хотя бы 3 слова в приложение, чтобы запустить тест!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Нужно хотя бы 3 слова в базе для работы теста!", Toast.LENGTH_LONG).show();
                     finish();
                     return;
                 }
 
-                // Перемешиваем и отбираем случайные 10 слов
-                List<Word> shuffledList = new ArrayList<>(allWords);
+                // Перемешиваем отобранные слова
+                List<Word> shuffledList = new ArrayList<>(matchedWords);
                 Collections.shuffle(shuffledList);
 
-                int questionsCount = Math.min(TOTAL_QUESTIONS, shuffledList.size());
+                // ИСПРАВЛЕНО: Если слов меньше 30, тест автоматически урезается до реального количества слов!
+                int questionsCount = Math.min(30, shuffledList.size());
                 quizWords = shuffledList.subList(0, questionsCount);
 
                 // Запускаем первый вопрос
@@ -102,6 +141,7 @@ public class QuizActivity extends AppCompatActivity {
             });
         }).start();
     }
+
 
     private void generateQuestion() {
         isAnswered = false;

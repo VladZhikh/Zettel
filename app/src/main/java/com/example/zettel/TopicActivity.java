@@ -155,37 +155,59 @@ public class TopicActivity extends AppCompatActivity {
             builder.create().show();
         });
         // --- ДИНАМИЧЕСКИЙ ВЫВОД КНОПКИ НАЗАД ВНИЗУ ЭКРАНА ---
+        // --- ДИНАМИЧЕСКИЙ ВЫВОД КНОПОК НАЗАД И ТЕСТА ВНИЗУ ЭКРАНА ---
         try {
-            // Находим родительский контейнер, в котором лежит кнопка добавления слова
             android.view.ViewGroup parentLayout = (android.view.ViewGroup) btnAddWord.getParent();
 
             if (parentLayout != null) {
-                // Создаем новую кнопку программно
-                Button btnBackToMenu = new Button(this);
+                int index = parentLayout.indexOfChild(btnAddWord);
 
-                // Настраиваем внешний вид кнопки
-                btnBackToMenu.setText("В главное меню");
-                btnBackToMenu.setTextColor(android.graphics.Color.WHITE);
-                btnBackToMenu.setBackgroundColor(android.graphics.Color.parseColor("#3F51B5")); // Синий цвет под стиль уровней
+                // 1. СОЗДАЕМ КНОПКУ ТЕСТА ПО ТЕМЕ
+                Button btnTestTopic = new Button(this);
+                btnTestTopic.setText("Тест по этой теме");
+                btnTestTopic.setTextColor(android.graphics.Color.WHITE);
+                btnTestTopic.setBackgroundColor(android.graphics.Color.parseColor("#4CAF50")); // Зеленый цвет
 
-                // Задаем размеры и отступы
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams testParams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-                params.setMargins(0, 24, 0, 0); // Отступ сверху от кнопки добавления слова
-                btnBackToMenu.setLayoutParams(params);
+                testParams.setMargins(0, 16, 0, 0);
+                btnTestTopic.setLayoutParams(testParams);
 
-                // Находим индекс кнопки добавления слова, чтобы вставить новую кнопку строго ПОД ней
-                int index = parentLayout.indexOfChild(btnAddWord);
-                parentLayout.addView(btnBackToMenu, index + 1);
+                // Кликая на тест по теме, мы берем текущую выбранную тему из списка (нужно адаптировать под ваш клик,
+                // но пока передаем маркер темы)
+                btnTestTopic.setOnClickListener(vTest -> {
+                    Intent intent = new Intent(TopicActivity.this, QuizActivity.class);
+                    intent.putExtra("MODE", "BY_TOPIC");
+                    intent.putExtra("DIFFICULTY_LEVEL", currentSelectedLevel);
+                    // Передаем имя текущей категории. Для теста можно брать категорию из выбранного spinner или адаптера
+                    intent.putExtra("SELECTED_CATEGORY", "Транспорт"); // Временная заглушка, ниже настроим динамически
+                    startActivity(intent);
+                });
 
-                // Логика нажатия: закрываем экран и возвращаемся в меню
+                parentLayout.addView(btnTestTopic, index + 1);
+
+                // 2. НАША СТАРАЯ СИНЯЯ КНОПКА НАЗАД
+                Button btnBackToMenu = new Button(this);
+                btnBackToMenu.setText("В главное меню");
+                btnBackToMenu.setTextColor(android.graphics.Color.WHITE);
+                btnBackToMenu.setBackgroundColor(android.graphics.Color.parseColor("#3F51B5"));
+
+                LinearLayout.LayoutParams backParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                backParams.setMargins(0, 16, 0, 0);
+                btnBackToMenu.setLayoutParams(backParams);
                 btnBackToMenu.setOnClickListener(vBack -> finish());
+
+                parentLayout.addView(btnBackToMenu, index + 2);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         // ----------------------------------------------------
 
     }
