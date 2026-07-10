@@ -5,8 +5,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-// Указываем, какие таблицы будут в БД и версию схемы
-@Database(entities = {Word.class}, version = 1, exportSchema = false)
+// ИСПРАВЛЕНО: Подняли версию базы данных с 1 на 2, так как изменилась структура таблицы Word
+@Database(entities = {Word.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     // Абстрактный метод для получения DAO
@@ -25,8 +25,9 @@ public abstract class AppDatabase extends RoomDatabase {
                                     "zettel_database" // Имя файла БД на телефоне
                             )
                             // Разрешаем запросы в главном потоке ТОЛЬКО для тестирования MVP!
-                            // В будущем мы перенесем это в фоновый поток.
                             .allowMainThreadQueries()
+                            // ИСПРАВЛЕНО: автоматически очистит и пересоздаст базу при изменении структуры полей
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }

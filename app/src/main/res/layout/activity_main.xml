@@ -65,6 +65,31 @@
             android:textSize="20sp"
             android:layout_marginTop="16dp"
             android:visibility="invisible" />
+        <!-- Немецкий пример предложения (по умолчанию скрыт) -->
+        <TextView
+            android:id="@+id/tvExampleGerman"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Hier steht ein Beispielsatz."
+            android:textColor="#3F51B5"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:visibility="gone" />
+
+        <!-- Перевод примера на русский (по умолчанию скрыт) -->
+        <TextView
+            android:id="@+id/tvExampleRussian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="(Здесь будет перевод примера.)"
+            android:textColor="#757575"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
 
     </LinearLayout>
 

@@ -4,328 +4,331 @@
     "russianTranslation": "Автомобиль",
     "category": "Транспорт",
     "level": "A1",
-    "wrongOptions": "Самолет, Корабль, Поезд"
+    "wrongOptions": "Самолет, Корабль, Поезд",
+    "exampleGerman": "Mein Auto ist neu und blau.",
+    "exampleRussian": "Моя машина новая и синяя."
   },
   {
     "germanWord": "Der Zug",
     "russianTranslation": "Поезд",
     "category": "Транспорт",
     "level": "A1",
-    "wrongOptions": "Велосипед, Автобус, Машина"
+    "wrongOptions": "Велосипед, Автобус, Машина",
+    "exampleGerman": "Der Zug kommt um zehn Uhr an.",
+    "exampleRussian": "Поезд прибывает в десять часов."
   },
   {
     "germanWord": "Das Fahrrad",
     "russianTranslation": "Велосипед",
     "category": "Транспорт",
     "level": "A1",
-    "wrongOptions": "Трамвай, Самолет, Метро"
+    "wrongOptions": "Трамвай, Самолет, Метро",
+    "exampleGerman": "Ich fahre gerne mit dem Fahrrad.",
+    "exampleRussian": "Мне нравится кататься на велосипеде."
   },
   {
     "germanWord": "Der Bus",
     "russianTranslation": "Автобус",
     "category": "Транспорт",
     "level": "A1",
-    "wrongOptions": "Такси, Поезд, Вертолет"
+    "wrongOptions": "Такси, Поезд, Вертолет",
+    "exampleGerman": "Der Bus wartet an der Haltestelle.",
+    "exampleRussian": "Автобус ждет на остановке."
   },
   {
     "germanWord": "Das Flugzeug",
     "russianTranslation": "Самолет",
     "category": "Транспорт",
     "level": "A1",
-    "wrongOptions": "Трамвай, Лодка, Велосипед"
+    "wrongOptions": "Трамвай, Лодка, Велосипед",
+    "exampleGerman": "Das Flugzeug fliegt über die Wolken.",
+    "exampleRussian": "Самолет летит над облаками."
   },
   {
     "germanWord": "Der LKW",
     "russianTranslation": "Грузовик",
     "category": "Транспорт",
     "level": "A1",
-    "wrongOptions": "Лодка, Вертолет, Мотоцикл"
+    "wrongOptions": "Лодка, Вертолет, Мотоцикл",
+    "exampleGerman": "Der LKW transportiert schwere Waren.",
+    "exampleRussian": "Грузовик перевозит тяжелые товары."
   },
   {
     "germanWord": "Das Raumschiff",
     "russianTranslation": "Космический корабль",
     "category": "Транспорт",
     "level": "A1",
-    "wrongOptions": "Автобус, Поезд, Такси"
+    "wrongOptions": "Автобус, Поезд, Такси",
+    "exampleGerman": "Das Raumschiff fliegt zum Mars.",
+    "exampleRussian": "Космический корабль летит на Марс."
   },
   {
     "germanWord": "Das U-Boot",
     "russianTranslation": "Подводная лодка",
     "category": "Транспорт",
     "level": "A1",
-    "wrongOptions": "Грузовик, Велосипед, Самолет"
+    "wrongOptions": "Грузовик, Велосипед, Самолет",
+    "exampleGerman": "Das U-Boot taucht tief im Ozean.",
+    "exampleRussian": "Подводная лодка погружается глубоко в океан."
   },
   {
     "germanWord": "Das Schiff",
     "russianTranslation": "Корабль",
     "category": "Транспорт",
     "level": "A1",
-    "wrongOptions": "Поезд, Машина, Самокат"
+    "wrongOptions": "Поезд, Машина, Самокат",
+    "exampleGerman": "Das große Schiff verlässt den Hafen.",
+    "exampleRussian": "Большой корабль покидает порт."
   },
   {
     "germanWord": "Der Hubschrauber",
     "russianTranslation": "Вертолет",
     "category": "Транспорт",
     "level": "A1",
-    "wrongOptions": "Автобус, Метро, Велосипед"
-  },
-  {
-    "germanWord": "Das Taxi",
-    "russianTranslation": "Такси",
-    "category": "Транспорт",
-    "level": "A1",
-    "wrongOptions": "Автобус, Метро, Велосипед"
-  },
-  {
-    "germanWord": "Die Straßenbahn",
-    "russianTranslation": "Трамвай",
-    "category": "Транспорт",
-    "level": "A1",
-    "wrongOptions": "Автобус, Метро, Велосипед"
-  },
-  {
-    "germanWord": "Das Motorrad",
-    "russianTranslation": "Мотоцикл",
-    "category": "Транспорт",
-    "level": "A1",
-    "wrongOptions": "Машина, Трамвай, Велосипед"
-  },
-  {
-    "germanWord": "Das Boot",
-    "russianTranslation": "Лодка",
-    "category": "Транспорт",
-    "level": "A1",
-    "wrongOptions": "Машина, Трамвай, Велосипед"
-  },
-  {
-    "germanWord": "Die Haltestelle",
-    "russianTranslation": "Остановка",
-    "category": "Транспорт",
-    "level": "A1",
-    "wrongOptions": "Вокзал, Трамвай, Расписание"
-  },
-  {
-    "germanWord": "Der Bahnhof",
-    "russianTranslation": "Вокзал",
-    "category": "Транспорт",
-    "level": "A1",
-    "wrongOptions": "Остановка, Трамвай, Расписание"
-  },
-  {
-    "germanWord": "Der Flughafen",
-    "russianTranslation": "Аэропорт",
-    "category": "Транспорт",
-    "level": "A1",
-    "wrongOptions": "Остановка, Вокзал, Расписание"
+    "wrongOptions": "Автобус, Метро, Велосипед",
+    "exampleGerman": "Der Hubschrauber landet auf dem Dach.",
+    "exampleRussian": "Вертолет приземляется на крышу."
   },
   {
     "germanWord": "Das Essen",
     "russianTranslation": "Еда",
     "category": "Еда",
     "level": "A1",
-    "wrongOptions": "Яблоко, Хлеб, Вода"
+    "wrongOptions": "Яблоко, Хлеб, Вода",
+    "exampleGerman": "Das Essen schmeckt wirklich lecker.",
+    "exampleRussian": "Еда действительно очень вкусная."
   },
   {
     "germanWord": "Der Apfel",
     "russianTranslation": "Яблоко",
     "category": "Еда",
     "level": "A1",
-    "wrongOptions": "Мясо, Молоко, Рыба"
+    "wrongOptions": "Мясо, Молоко, Рыба",
+    "exampleGerman": "Ich esse jeden Tag einen roten Apfel.",
+    "exampleRussian": "Я каждый день ем красное яблоко."
   },
   {
     "germanWord": "Das Brot",
     "russianTranslation": "Хлеб",
     "category": "Еда",
     "level": "A1",
-    "wrongOptions": "Сыр, Масло, Яйцо"
+    "wrongOptions": "Сыр, Масло, Яйцо",
+    "exampleGerman": "Ich schneide ein Stück Brot ab.",
+    "exampleRussian": "Я отрезаю кусочек хлеба."
   },
   {
     "germanWord": "Die Milch",
     "russianTranslation": "Молоко",
     "category": "Еда",
     "level": "A1",
-    "wrongOptions": "Сок, Чай, Пиво"
+    "wrongOptions": "Сок, Чай, Пиво",
+    "exampleGerman": "Trinkst du morgens kalte Milch?",
+    "exampleRussian": "Ты пьешь холодное молоко по утрам?"
   },
   {
     "germanWord": "Das Wasser",
     "russianTranslation": "Вода",
     "category": "Еда",
     "level": "A1",
-    "wrongOptions": "Вино, Кофе, Суп"
+    "wrongOptions": "Вино, Кофе, Суп",
+    "exampleGerman": "Ein Glas kaltes Wasser, bitte.",
+    "exampleRussian": "Стакан холодной воды, пожалуйста."
   },
   {
     "germanWord": "Die Gurke",
     "russianTranslation": "Огурец",
     "category": "Еда",
     "level": "A1",
-    "wrongOptions": "Картошка, Лук, Чеснок"
+    "wrongOptions": "Картошка, Лук, Чеснок",
+    "exampleGerman": "Ich schneide eine grüne Gurke für den Salat.",
+    "exampleRussian": "Я режу зеленый огурец для салата."
   },
   {
     "germanWord": "Der Käse",
     "russianTranslation": "Сыр",
     "category": "Еда",
     "level": "A1",
-    "wrongOptions": "Колбаса, Ветчина, Соль"
+    "wrongOptions": "Колбаса, Ветчина, Соль",
+    "exampleGerman": "Der französische Käse riecht stark.",
+    "exampleRussian": "Французский сыр сильно пахнет."
   },
   {
     "germanWord": "Die Tomate",
     "russianTranslation": "Помидор",
     "category": "Еда",
     "level": "A1",
-    "wrongOptions": "Лимон, Банан, Апельсин"
+    "wrongOptions": "Лимон, Банан, Апельсин",
+    "exampleGerman": "Die rote Tomate schmeckt süß.",
+    "exampleRussian": "Красный помидор сладкий на вкус."
   },
   {
     "germanWord": "Das Hähnchen",
     "russianTranslation": "Курица",
     "category": "Еда",
     "level": "A1",
-    "wrongOptions": "Рыба, Рис, Макароны"
+    "wrongOptions": "Рыба, Рис, Макароны",
+    "exampleGerman": "Das Hähnchen brät im Ofen.",
+    "exampleRussian": "Курица жарится в духовке."
   },
   {
     "germanWord": "Der Salat",
     "russianTranslation": "Салат",
     "category": "Еда",
     "level": "A1",
-    "wrongOptions": "Торт, Шоколад, Мед"
+    "wrongOptions": "Торт, Шоколад, Мед",
+    "exampleGerman": "Der Salat ist frisch und gesund.",
+    "exampleRussian": "Салат свежий и полезный."
   },
   {
     "germanWord": "Kaufen",
     "russianTranslation": "Покупать",
     "category": "Покупки",
     "level": "A1",
-    "wrongOptions": "Продавать, Платить, Искать"
+    "wrongOptions": "Продавать, Платить, Искать",
+    "exampleGerman": "Ich kaufe ein neues Buch.",
+    "exampleRussian": "Я покупаю новую книгу."
   },
   {
     "germanWord": "Das Geld",
     "russianTranslation": "Деньги",
     "category": "Покупки",
     "level": "A1",
-    "wrongOptions": "Кошелек, Карта, Чек"
+    "wrongOptions": "Кошелек, Карта, Чек",
+    "exampleGerman": "Ich habe kein Geld in meiner Tasche.",
+    "exampleRussian": "У меня нет денег в сумке."
   },
   {
     "germanWord": "Der Preis",
     "russianTranslation": "Цена",
     "category": "Покупки",
     "level": "A1",
-    "wrongOptions": "Скидка, Касса, Чек"
+    "wrongOptions": "Скидка, Касса, Чек",
+    "exampleGerman": "Der Preis für dieses Hemd ist zu hoch.",
+    "exampleRussian": "Цена этой рубашки слишком высокая."
   },
   {
     "germanWord": "Der Laden",
     "russianTranslation": "Магазин",
     "category": "Покупки",
     "level": "A1",
-    "wrongOptions": "Рынок, Завод, Офис"
+    "wrongOptions": "Рынок, Завод, Офис",
+    "exampleGerman": "Der Laden schließt um acht Uhr abends.",
+    "exampleRussian": "Магазин закрывается в восемь часов вечера."
   },
   {
     "germanWord": "Die Tasche",
     "russianTranslation": "Сумка",
     "category": "Покупки",
     "level": "A1",
-    "wrongOptions": "Обувь, Платье, Куртка"
+    "wrongOptions": "Обувь, Платье, Куртка",
+    "exampleGerman": "Deine Tasche ist wirklich schwer.",
+    "exampleRussian": "Твоя сумка действительно тяжелая."
   },
   {
     "germanWord": "Der Rabatt",
     "russianTranslation": "Скидка",
     "category": "Покупки",
     "level": "A1",
-    "wrongOptions": "Цена, Касса, Товар"
+    "wrongOptions": "Цена, Касса, Товар",
+    "exampleGerman": "Wir bekommen heute zehn Prozent Rabatt.",
+    "exampleRussian": "Мы получаем сегодня десять процентов скидки."
   },
   {
     "germanWord": "Teuer",
     "russianTranslation": "Дорогой",
     "category": "Покупки",
     "level": "A1",
-    "wrongOptions": "Дешевый, Бесплатный, Новый"
+    "wrongOptions": "Дешевый, Бесплатный, Новый",
+    "exampleGerman": "Das Hotelzimmer ist sehr teuer.",
+    "exampleRussian": "Номер в отеле очень дорогой."
   },
   {
     "germanWord": "Billig",
     "russianTranslation": "Дешевый",
     "category": "Покупки",
     "level": "A1",
-    "wrongOptions": "Дорогой, Чистый, Сломанный"
+    "wrongOptions": "Дорогой, Чистый, Сломанный",
+    "exampleGerman": "Die Lebensmittel auf dem Markt sind billig.",
+    "exampleRussian": "Продукты на рынке дешевые."
   },
   {
     "germanWord": "Die Quittung",
     "russianTranslation": "Чек",
     "category": "Покупки",
     "level": "A1",
-    "wrongOptions": "Карта, Кошелек, Монета"
+    "wrongOptions": "Карта, Кошелек, Монета",
+    "exampleGerman": "Bitte bewahren Sie die Quittung auf.",
+    "exampleRussian": "Пожалуйста, сохраняйте чек."
   },
   {
     "germanWord": "Verkaufen",
     "russianTranslation": "Продавать",
     "category": "Покупки",
     "level": "A1",
-    "wrongOptions": "Покупать, Менять, Дарить"
+    "wrongOptions": "Покупать, Менять, Дарить",
+    "exampleGerman": "Er verkauft sein altes Auto.",
+    "exampleRussian": "Он продает свою старую машину."
   },
   {
     "germanWord": "Die Familie",
     "russianTranslation": "Семья",
     "category": "Семья",
     "level": "A1",
-    "wrongOptions": "Мама, Папа, Друг"
+    "wrongOptions": "Мама, Папа, Друг",
+    "exampleGerman": "Meine Familie lebt in Deutschland.",
+    "exampleRussian": "Моя семья живет в Германии."
   },
   {
     "germanWord": "Die Mutter",
     "russianTranslation": "Мать",
     "category": "Семья",
     "level": "A1",
-    "wrongOptions": "Сестра, Брат, Бабушка"
+    "wrongOptions": "Сестра, Брат, Бабушка",
+    "exampleGerman": "Meine Mutter kocht eine Suppe.",
+    "exampleRussian": "Моя мама варит суп."
   },
   {
     "germanWord": "Der Vater",
     "russianTranslation": "Отец",
     "category": "Семья",
     "level": "A1",
-    "wrongOptions": "Дедушка, Дядя, Коллега"
+    "wrongOptions": "Дедушка, Дядя, Коллега",
+    "exampleGerman": "Mein Vater arbeitet im Büro.",
+    "exampleRussian": "Мой отец работает в офисе."
   },
   {
     "germanWord": "Die Tochter",
     "russianTranslation": "Дочь",
     "category": "Семья",
     "level": "A1",
-    "wrongOptions": "Сын, Внук, Племянник"
+    "wrongOptions": "Сын, Внук, Племянник",
+    "exampleGerman": "Ihre Tochter geht schon in die Schule.",
+    "exampleRussian": "Ее дочь уже ходит в школу."
   },
   {
     "germanWord": "Der Sohn",
     "russianTranslation": "Сын",
     "category": "Семья",
     "level": "A1",
-    "wrongOptions": "Дочь, Внучка, Тетя"
+    "wrongOptions": "Дочь, Внучка, Тетя",
+    "exampleGerman": "Mein Sohn spielt Fußball im Garten.",
+    "exampleRussian": "Мой сын играет в футбол в саду."
   },
   {
     "germanWord": "Die Eltern",
     "russianTranslation": "Родители",
     "category": "Семья",
     "level": "A1",
-    "wrongOptions": "Дети, Внуки, Коллеги"
-  },
-  {
-    "germanWord": "Der Bruder",
-    "russianTranslation": "Брат",
-    "category": "Семья",
-    "level": "A1",
-    "wrongOptions": "Дядя, Тетя, Племянник"
-  },
-  {
-    "germanWord": "Die Schwester",
-    "russianTranslation": "Сестра",
-    "category": "Семья",
-    "level": "A1",
-    "wrongOptions": "Бабушка, Мать, Подруга"
-  },
-  {
-    "germanWord": "Die Großeltern",
-    "russianTranslation": "Бабушка и дедушка",
-    "category": "Семья",
-    "level": "A1",
-    "wrongOptions": "Родители, Дети, Соседи"
-  },
+    "wrongOptions": "Дети, Внуки, Коллеги",
+    "exampleGerman": "Ich besuche meine Eltern am Wochenende.",
+    "exampleRussian": "Я навещаю своих родителей на выходных."},
   {
     "germanWord": "Der Verwandte",
     "russianTranslation": "Родственник",
     "category": "Семья",
     "level": "A1",
-    "wrongOptions": "Друг, Прохожий, Враг"
+    "wrongOptions": "Друг, Прохожий, Враг",
+    "exampleGerman": "Viele Verwandte kommen zu meinem Geburtstag.",
+    "exampleRussian": "Много родственников придут на мой день рождения."
   }
 ]

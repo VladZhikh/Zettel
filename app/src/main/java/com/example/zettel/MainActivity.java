@@ -66,11 +66,24 @@ public class MainActivity extends AppCompatActivity {
                 if (wordList != null && !wordList.isEmpty() && currentWordIndex < wordList.size()) {
                     binding.tvTranslation.setVisibility(View.VISIBLE);
 
-                    String wordToSpeak = wordList.get(currentWordIndex).getGermanWord();
+                    Word currentWord = wordList.get(currentWordIndex);
+
+                    // Озвучка слова
+                    String wordToSpeak = currentWord.getGermanWord();
                     speakGerman(wordToSpeak);
+
+                    // ИСПРАВЛЕНО: Показываем локальные примеры предложений из JSON, если они есть
+                    if (currentWord.getExampleGerman() != null && !currentWord.getExampleGerman().isEmpty()) {
+                        binding.tvExampleGerman.setText(currentWord.getExampleGerman());
+                        binding.tvExampleRussian.setText("(" + currentWord.getExampleRussian() + ")");
+
+                        binding.tvExampleGerman.setVisibility(View.VISIBLE);
+                        binding.tvExampleRussian.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });
+
 
         // Клик по динамику на самой карточке слова (повторная озвучка)
         binding.btnSpeakCard.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +179,9 @@ public class MainActivity extends AppCompatActivity {
             binding.tvTranslation.setText("В этой теме пока пусто");
             binding.tvTranslation.setVisibility(View.VISIBLE);
         }
+        binding.tvExampleGerman.setVisibility(View.GONE);
+        binding.tvExampleRussian.setVisibility(View.GONE);
+
     }
 
     // метод автозаполнения базы слов разной сложности

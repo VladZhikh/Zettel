@@ -13,6 +13,9 @@ public class Word {
     private String level; // Наш уровень сложности (A1, A2, B1)
     private String wrongOptions; // 3 ложных ответа через запятую для будущих тестов
     private boolean isLearned;
+    private String exampleGerman;
+    private String exampleRussian;
+
 
     // Конструктор для создания объекта слова
     public Word(String germanWord, String russianTranslation, String category, String level, String wrongOptions) {
@@ -45,4 +48,10 @@ public class Word {
 
     public boolean isLearned() { return isLearned; }
     public void setLearned(boolean learned) { isLearned = learned; }
+    public String getExampleGerman() { return exampleGerman; }
+    public void setExampleGerman(String exampleGerman) { this.exampleGerman = exampleGerman; }
+
+    public String getExampleRussian() { return exampleRussian; }
+    public void setExampleRussian(String exampleRussian) { this.exampleRussian = exampleRussian; }
+
 }
