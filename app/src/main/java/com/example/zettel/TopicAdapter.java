@@ -24,7 +24,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         this.clickListener = clickListener;
     }
 
-    // НОВЫЙ МЕТОД: Позволяет менять уровень из Activity и обновлять шкалы
+    // Позволяет менять уровень из Activity и обновлять шкалы
     public void setSelectedLevel(String level) {
         this.selectedLevel = level;
         notifyDataSetChanged();
@@ -46,14 +46,17 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         AppDatabase db = AppDatabase.getInstance(holder.itemView.getContext());
 
         if (topic.getId().equals("review")) {
+            // РЕЖИМ 1: Общее повторение слов (считаем по всей базе для выбранного уровня)
             new Thread(() -> {
-                // В режиме повторения считаем слова только ВЫБРАННОГО уровня
                 int total = 0;
                 int learned = 0;
-                for (Word w : db.wordDao().getAllWords()) {
-                    if (w.getLevel().equals(selectedLevel)) {
-                        total++;
-                        if (w.isLearned()) learned++;
+                List<Word> allWords = db.wordDao().getAllWords();
+                if (allWords != null) {
+                    for (Word w : allWords) {
+                        if (w.getLevel() != null && w.getLevel().equalsIgnoreCase(selectedLevel)) {
+                            total++;
+                            if (w.isLearned()) learned++;
+                        }
                     }
                 }
 
@@ -67,20 +70,20 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
                 });
             }).start();
         } else {
+            // РЕЖИМ 2: УНИВЕРСАЛЬНЫЙ (Для абсолютно любой стандартной или новой темы!)
             new Thread(() -> {
-                String categoryName = "Транспорт";
-                if (topic.getId().equals("food")) categoryName = "Еда";
-                else if (topic.getId().equals("shopping")) categoryName = "Покупки";
-                else if (topic.getId().equals("family")) categoryName = "Семья";
+                // ИСПРАВЛЕНО: Никакого хардкода! Берём имя категории прямо из темы
+                String categoryName = topic.getNameRu();
 
-                // Передаем ТЕКУЩИЙ ВЫБРАННЫЙ уровень сложности в DAO
-                int totalWords = db.wordDao().getTotalWordsCount(categoryName, selectedLevel);
-                int learnedWords = db.wordDao().getLearnedWordsCount(categoryName, selectedLevel);
+                // Делаем запросы в базу данных, используя наши новые методы из WordDao
+                int totalWords = db.wordDao().getCountAllWordsInTopic(categoryName, selectedLevel);
+                int learnedWords = db.wordDao().getCountLearnedWordsInTopic(categoryName, selectedLevel);
 
                 int progressPercent = (totalWords > 0) ? (learnedWords * 100 / totalWords) : 0;
 
                 holder.itemView.post(() -> {
-                    holder.tvProgressPercent.setText(progressPercent + "%");
+                    // Добавим красивый вывод счетчика слов (например, "45% (5/11)") как на повторении
+                    holder.tvProgressPercent.setText(progressPercent + "% (" + learnedWords + "/" + totalWords + ")");
                     holder.topicProgressBar.setProgress(progressPercent);
                 });
             }).start();

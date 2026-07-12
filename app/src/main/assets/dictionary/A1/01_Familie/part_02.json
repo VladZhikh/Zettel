@@ -1,0 +1,134 @@
+[
+  {
+    "germanWord": "Die Eltern",
+    "russianTranslation": "Родители",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "—",
+    "verbForms": "",
+    "wrongOptions": "Дети, Друзья, Соседи",
+    "exampleGerman": "Meine Eltern wohnen in Hamburg.",
+    "exampleRussian": "Мои родители живут в Гамбурге."
+  },
+  {
+    "germanWord": "Das Kind",
+    "russianTranslation": "Ребенок",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Kinder",
+    "verbForms": "",
+    "wrongOptions": "Взрослый, Родитель, Учитель",
+    "exampleGerman": "Das Kind spielt im Garten.",
+    "exampleRussian": "Ребенок играет в саду."
+  },
+  {
+    "germanWord": "Die Kinder",
+    "russianTranslation": "Дети",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "—",
+    "verbForms": "",
+    "wrongOptions": "Родители, Взрослые, Учителя",
+    "exampleGerman": "Die Kinder spielen zusammen.",
+    "exampleRussian": "Дети играют вместе."
+  },
+  {
+    "germanWord": "Der Cousin",
+    "russianTranslation": "Двоюродный брат",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Cousins",
+    "verbForms": "",
+    "wrongOptions": "Брат, Друг, Сосед",
+    "exampleGerman": "Mein Cousin besucht mich am Wochenende.",
+    "exampleRussian": "Мой двоюродный брат навещает меня в выходные."
+  },
+  {
+    "germanWord": "Die Cousine",
+    "russianTranslation": "Двоюродная сестра",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Cousinen",
+    "verbForms": "",
+    "wrongOptions": "Сестра, Подруга, Тетя",
+    "exampleGerman": "Meine Cousine studiert Medizin.",
+    "exampleRussian": "Моя двоюродная сестра изучает медицину."
+  },
+  {
+    "germanWord": "Der Ehemann",
+    "russianTranslation": "Муж",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Ehemänner",
+    "verbForms": "",
+    "wrongOptions": "Брат, Отец, Друг",
+    "exampleGerman": "Ihr Ehemann arbeitet als Arzt.",
+    "exampleRussian": "Ее муж работает врачом."
+  },
+  {
+    "germanWord": "Die Ehefrau",
+    "russianTranslation": "Жена",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Ehefrauen",
+    "verbForms": "",
+    "wrongOptions": "Сестра, Мать, Подруга",
+    "exampleGerman": "Seine Ehefrau spricht drei Sprachen.",
+    "exampleRussian": "Его жена говорит на трех языках."
+  },
+  {
+    "germanWord": "Der Mann",
+    "russianTranslation": "Мужчина",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Männer",
+    "verbForms": "",
+    "wrongOptions": "Мальчик, Друг, Отец",
+    "exampleGerman": "Der Mann wartet an der Bushaltestelle.",
+    "exampleRussian": "Мужчина ждет на автобусной остановке."
+  },
+  {
+    "germanWord": "Die Frau",
+    "russianTranslation": "Женщина",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Frauen",
+    "verbForms": "",
+    "wrongOptions": "Девочка, Мать, Сестра",
+    "exampleGerman": "Die Frau liest ein interessantes Buch.",
+    "exampleRussian": "Женщина читает интересную книгу."
+  },
+  {
+    "germanWord": "Der Junge",
+    "russianTranslation": "Мальчик",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Jungen",
+    "verbForms": "",
+    "wrongOptions": "Мужчина, Брат, Друг",
+    "exampleGerman": "Der Junge fährt mit dem Fahrrad.",
+    "exampleRussian": "Мальчик едет на велосипеде."
+  },
+  {
+    "germanWord": "Das Mädchen",
+    "russianTranslation": "Девочка",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Mädchen",
+    "verbForms": "",
+    "wrongOptions": "Женщина, Сестра, Подруга",
+    "exampleGerman": "Das Mädchen malt ein schönes Bild.",
+    "exampleRussian": "Девочка рисует красивую картину."
+  },
+  {
+    "germanWord": "Der Erwachsene",
+    "russianTranslation": "Взрослый",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Erwachsenen",
+    "verbForms": "",
+    "wrongOptions": "Ребенок, Ученик, Друг",
+    "exampleGerman": "Alle Erwachsenen sitzen am Tisch.",
+    "exampleRussian": "Все взрослые сидят за столом."
+  }
+]

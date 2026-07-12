@@ -1,0 +1,167 @@
+[
+  {
+    "germanWord": "das Land",
+    "russianTranslation": "страна",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "die Länder",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Deutschland ist ein schönes Land.",
+    "exampleRussian": "Германия — красивая страна."
+  },
+  {
+    "germanWord": "die Sprache",
+    "russianTranslation": "язык",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "die Sprachen",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Deutsch ist keine leichte Sprache.",
+    "exampleRussian": "Немецкий — не самый лёгкий язык."
+  },
+  {
+    "germanWord": "Deutschland",
+    "russianTranslation": "Германия",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Ich möchte Deutschland besuchen.",
+    "exampleRussian": "Я хочу посетить Германию."
+  },
+  {
+    "germanWord": "die Ukraine",
+    "russianTranslation": "Украина",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Ich komme aus der Ukraine.",
+    "exampleRussian": "Я родом из Украины."
+  },
+  {
+    "germanWord": "Polen",
+    "russianTranslation": "Польша",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Polen liegt neben Deutschland.",
+    "exampleRussian": "Польша находится рядом с Германией."
+  },
+  {
+    "germanWord": "Österreich",
+    "russianTranslation": "Австрия",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Wien ist die Hauptstadt von Österreich.",
+    "exampleRussian": "Вена — столица Австрии."
+  },
+  {
+    "germanWord": "die Schweiz",
+    "russianTranslation": "Швейцария",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "In der Schweiz spricht man Deutsch, Französisch und Italienisch.",
+    "exampleRussian": "В Швейцарии говорят на немецком, французском и итальянском языках."
+  },
+  {
+    "germanWord": "Deutsch",
+    "russianTranslation": "немецкий язык",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Ich lerne Deutsch.",
+    "exampleRussian": "Я изучаю немецкий язык."
+  },
+  {
+    "germanWord": "Englisch",
+    "russianTranslation": "английский язык",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Sprichst du Englisch?",
+    "exampleRussian": "Ты говоришь по-английски?"
+  },
+  {
+    "germanWord": "Ukrainisch",
+    "russianTranslation": "украинский язык",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Sie spricht Ukrainisch und Deutsch.",
+    "exampleRussian": "Она говорит по-украински и по-немецки."
+  },
+  {
+    "germanWord": "Russisch",
+    "russianTranslation": "русский язык",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Kannst du Russisch lesen?",
+    "exampleRussian": "Ты умеешь читать по-русски?"
+  },
+  {
+    "germanWord": "sprechen",
+    "russianTranslation": "говорить (на языке)",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "spricht, sprach, hat gesprochen",
+    "wrongOptions": "",
+    "exampleGerman": "Wir sprechen Deutsch im Unterricht.",
+    "exampleRussian": "Мы говорим по-немецки на уроке."
+  },
+  {
+    "germanWord": "verstehen",
+    "russianTranslation": "понимать",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "versteht, verstand, hat verstanden",
+    "wrongOptions": "",
+    "exampleGerman": "Ich verstehe die Frage.",
+    "exampleRussian": "Я понимаю вопрос."
+  },
+  {
+    "germanWord": "übersetzen",
+    "russianTranslation": "переводить",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "übersetzt, übersetzte, hat übersetzt",
+    "wrongOptions": "",
+    "exampleGerman": "Kannst du das ins Deutsche übersetzen?",
+    "exampleRussian": "Ты можешь перевести это на немецкий?"
+  },
+  {
+    "germanWord": "international",
+    "russianTranslation": "международный",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Das ist eine internationale Firma.",
+    "exampleRussian": "Это международная компания."
+  }
+]

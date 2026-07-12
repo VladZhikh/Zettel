@@ -1,0 +1,112 @@
+[
+  {
+    "germanWord": "der Freund",
+    "russianTranslation": "друг",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "die Freunde",
+    "verbForms": "",
+    "wrongOptions": "Брат, Сосед, Учитель",
+    "exampleGerman": "Mein Freund kommt heute zu Besuch.",
+    "exampleRussian": "Мой друг сегодня придет в гости."
+  },
+  {
+    "germanWord": "die Freundin",
+    "russianTranslation": "подруга",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "die Freundinnen",
+    "verbForms": "",
+    "wrongOptions": "Сестра, Мама, Тетя",
+    "exampleGerman": "Meine Freundin wohnt in Berlin.",
+    "exampleRussian": "Моя подруга живет в Берлине."
+  },
+  {
+    "germanWord": "der Nachbar",
+    "russianTranslation": "сосед",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "die Nachbarn",
+    "verbForms": "",
+    "wrongOptions": "Друг, Брат, Учитель",
+    "exampleGerman": "Unser Nachbar ist sehr freundlich.",
+    "exampleRussian": "Наш сосед очень дружелюбный."
+  },
+  {
+    "germanWord": "die Nachbarin",
+    "russianTranslation": "соседка",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "die Nachbarinnen",
+    "verbForms": "",
+    "wrongOptions": "Подруга, Тетя, Учительница",
+    "exampleGerman": "Meine Nachbarin hat einen Hund.",
+    "exampleRussian": "У моей соседки есть собака."
+  },
+  {
+    "germanWord": "zusammen",
+    "russianTranslation": "вместе",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "отдельно, далеко, быстро",
+    "exampleGerman": "Wir essen heute zusammen.",
+    "exampleRussian": "Сегодня мы едим вместе."
+  },
+  {
+    "germanWord": "allein",
+    "russianTranslation": "один, в одиночестве",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "вместе, громко, быстро",
+    "exampleGerman": "Er wohnt allein.",
+    "exampleRussian": "Он живет один."
+  },
+  {
+    "germanWord": "lieben",
+    "russianTranslation": "любить",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "liebt, liebte, hat geliebt",
+    "wrongOptions": "ненавидеть, искать, покупать",
+    "exampleGerman": "Ich liebe meine Familie.",
+    "exampleRussian": "Я люблю свою семью."
+  },
+  {
+    "germanWord": "besuchen",
+    "russianTranslation": "навещать",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "besucht, besuchte, hat besucht",
+    "wrongOptions": "покидать, искать, покупать",
+    "exampleGerman": "Wir besuchen unsere Großeltern am Sonntag.",
+    "exampleRussian": "Мы навещаем бабушку и дедушку в воскресенье."
+  },
+  {
+    "germanWord": "geboren",
+    "russianTranslation": "рожденный",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "женатый, высокий, молодой",
+    "exampleGerman": "Ich bin 1998 geboren.",
+    "exampleRussian": "Я родился в 1998 году."
+  },
+  {
+    "germanWord": "das Paar",
+    "russianTranslation": "пара",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "die Paare",
+    "verbForms": "",
+    "wrongOptions": "Семья, Команда, Компания",
+    "exampleGerman": "Das Paar tanzt sehr gut.",
+    "exampleRussian": "Эта пара очень хорошо танцует."
+  }
+]

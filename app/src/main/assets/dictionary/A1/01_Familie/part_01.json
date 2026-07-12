@@ -1,0 +1,112 @@
+[
+  {
+    "germanWord": "Der Vater",
+    "russianTranslation": "Отец",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Väter",
+    "verbForms": "",
+    "wrongOptions": "Брат, Дядя, Друг",
+    "exampleGerman": "Mein Vater arbeitet im Büro.",
+    "exampleRussian": "Мой отец работает в офисе."
+  },
+  {
+    "germanWord": "Die Mutter",
+    "russianTranslation": "Мать",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Mütter",
+    "verbForms": "",
+    "wrongOptions": "Сестра, Бабушка, Тетя",
+    "exampleGerman": "Meine Mutter kocht sehr gut.",
+    "exampleRussian": "Моя мама очень хорошо готовит."
+  },
+  {
+    "germanWord": "Der Sohn",
+    "russianTranslation": "Сын",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Söhne",
+    "verbForms": "",
+    "wrongOptions": "Отец, Дядя, Дедушка",
+    "exampleGerman": "Ihr Sohn geht zur Schule.",
+    "exampleRussian": "Их сын ходит в школу."
+  },
+  {
+    "germanWord": "Die Tochter",
+    "russianTranslation": "Дочь",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Töchter",
+    "verbForms": "",
+    "wrongOptions": "Мать, Тетя, Бабушка",
+    "exampleGerman": "Seine Tochter spielt Klavier.",
+    "exampleRussian": "Его дочь играет на пианино."
+  },
+  {
+    "germanWord": "Der Bruder",
+    "russianTranslation": "Брат",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Brüder",
+    "verbForms": "",
+    "wrongOptions": "Отец, Сын, Дедушка",
+    "exampleGerman": "Mein Bruder studiert Informatik.",
+    "exampleRussian": "Мой брат изучает информатику."
+  },
+  {
+    "germanWord": "Die Schwester",
+    "russianTranslation": "Сестра",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Schwestern",
+    "verbForms": "",
+    "wrongOptions": "Мать, Дочь, Тетя",
+    "exampleGerman": "Meine Schwester wohnt in Berlin.",
+    "exampleRussian": "Моя сестра живет в Берлине."
+  },
+  {
+    "germanWord": "Der Großvater",
+    "russianTranslation": "Дедушка",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Großväter",
+    "verbForms": "",
+    "wrongOptions": "Отец, Дядя, Брат",
+    "exampleGerman": "Mein Großvater liest jeden Morgen Zeitung.",
+    "exampleRussian": "Мой дедушка каждое утро читает газету."
+  },
+  {
+    "germanWord": "Die Großmutter",
+    "russianTranslation": "Бабушка",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Großmütter",
+    "verbForms": "",
+    "wrongOptions": "Мать, Тетя, Сестра",
+    "exampleGerman": "Meine Großmutter backt einen Kuchen.",
+    "exampleRussian": "Моя бабушка печет пирог."
+  },
+  {
+    "germanWord": "Der Onkel",
+    "russianTranslation": "Дядя",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Onkel",
+    "verbForms": "",
+    "wrongOptions": "Брат, Сын, Друг",
+    "exampleGerman": "Mein Onkel fährt einen Bus.",
+    "exampleRussian": "Мой дядя водит автобус."
+  },
+  {
+    "germanWord": "Die Tante",
+    "russianTranslation": "Тетя",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Tanten",
+    "verbForms": "",
+    "wrongOptions": "Мать, Бабушка, Сестра",
+    "exampleGerman": "Meine Tante lebt in Wien.",
+    "exampleRussian": "Моя тетя живет в Вене."
+  }
+]

@@ -25,7 +25,6 @@ public interface WordDao {
     @Query("SELECT * FROM word_table")
     List<Word> getAllWords();
 
-    // Самый главный запрос для карточек Zettel:
     // Достаем слова конкретного уровня (A1/A2) и конкретной темы, которые еще НЕ выучены
     // ТЕПЕРЬ ДОСТАЕМ ВООБЩЕ ВСЕ СЛОВА ТЕМЫ (и выученные, и нет)
     @Query("SELECT * FROM word_table WHERE level = :selectedLevel AND category = :selectedCategory")
@@ -43,5 +42,18 @@ public interface WordDao {
     // Считаем количество только выученных слов в конкретной категории
     @Query("SELECT COUNT(*) FROM word_table WHERE category = :categoryName AND level = :level AND isLearned = 1")
     int getLearnedWordsCount(String categoryName, String level);
+
+    // Выбираем все темы, которые есть в базе
+    @Query("SELECT DISTINCT category FROM word_table WHERE category IS NOT NULL AND category != ''")
+    List<String> getUniqueCategories();
+    // Считает ВСЕ слова конкретной темы и уровня
+    @Query("SELECT COUNT(*) FROM word_table WHERE category = :category AND level = :level")
+    int getCountAllWordsInTopic(String category, String level);
+
+    // Считает только ВЫУЧЕННЫЕ слова конкретной темы и уровня
+    @Query("SELECT COUNT(*) FROM word_table WHERE category = :category AND level = :level AND isLearned = 1")
+    int getCountLearnedWordsInTopic(String category, String level);
+
+
 }
 

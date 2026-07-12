@@ -1,0 +1,167 @@
+[
+  {
+    "germanWord": "der Mensch",
+    "russianTranslation": "человек",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Menschen",
+    "verbForms": "",
+    "wrongOptions": "Животное, Друг, Сосед",
+    "exampleGerman": "Jeder Mensch lernt anders.",
+    "exampleRussian": "Каждый человек учится по-разному."
+  },
+  {
+    "germanWord": "die Person",
+    "russianTranslation": "человек, персона",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Personen",
+    "verbForms": "",
+    "wrongOptions": "Группа, Семья, Ребенок",
+    "exampleGerman": "Im Zimmer sind fünf Personen.",
+    "exampleRussian": "В комнате пять человек."
+  },
+  {
+    "germanWord": "der Name",
+    "russianTranslation": "имя",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Namen",
+    "verbForms": "",
+    "wrongOptions": "Адрес, Телефон, Возраст",
+    "exampleGerman": "Wie ist dein Name?",
+    "exampleRussian": "Как тебя зовут?"
+  },
+  {
+    "germanWord": "der Vorname",
+    "russianTranslation": "имя",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Vornamen",
+    "verbForms": "",
+    "wrongOptions": "Фамилия, Адрес, Город",
+    "exampleGerman": "Mein Vorname ist Anna.",
+    "exampleRussian": "Меня зовут Анна."
+  },
+  {
+    "germanWord": "der Nachname",
+    "russianTranslation": "фамилия",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Nachnamen",
+    "verbForms": "",
+    "wrongOptions": "Имя, Страна, Возраст",
+    "exampleGerman": "Mein Nachname ist Müller.",
+    "exampleRussian": "Моя фамилия — Мюллер."
+  },
+  {
+    "germanWord": "das Alter",
+    "russianTranslation": "возраст",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "—",
+    "verbForms": "",
+    "wrongOptions": "Рост, Вес, Адрес",
+    "exampleGerman": "Das Alter spielt keine Rolle.",
+    "exampleRussian": "Возраст не играет роли."
+  },
+  {
+    "germanWord": "alt",
+    "russianTranslation": "старый",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "Молодой, Высокий, Маленький",
+    "exampleGerman": "Mein Großvater ist alt.",
+    "exampleRussian": "Мой дедушка старый."
+  },
+  {
+    "germanWord": "jung",
+    "russianTranslation": "молодой",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "Старый, Высокий, Добрый",
+    "exampleGerman": "Sie ist noch jung.",
+    "exampleRussian": "Она еще молодая."
+  },
+  {
+    "germanWord": "groß",
+    "russianTranslation": "высокий, большой",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "Маленький, Молодой, Старый",
+    "exampleGerman": "Mein Bruder ist sehr groß.",
+    "exampleRussian": "Мой брат очень высокий."
+  },
+  {
+    "germanWord": "klein",
+    "russianTranslation": "маленький, невысокий",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "Большой, Высокий, Старый",
+    "exampleGerman": "Das Kind ist noch klein.",
+    "exampleRussian": "Ребенок еще маленький."
+  },
+  {
+    "germanWord": "heißen",
+    "russianTranslation": "называться, зваться",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "heißt, hieß, hat geheißen",
+    "wrongOptions": "Жить, Работать, Учиться",
+    "exampleGerman": "Ich heiße Max.",
+    "exampleRussian": "Меня зовут Макс."
+  },
+  {
+    "germanWord": "vorstellen",
+    "russianTranslation": "представлять, знакомить",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "stellt vor, stellte vor, hat vorgestellt",
+    "wrongOptions": "Покупать, Искать, Слушать",
+    "exampleGerman": "Ich möchte mich vorstellen.",
+    "exampleRussian": "Я хотел бы представиться."
+  },
+  {
+    "germanWord": "kennen",
+    "russianTranslation": "знать (быть знакомым)",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "kennt, kannte, hat gekannt",
+    "wrongOptions": "Учить, Видеть, Искать",
+    "exampleGerman": "Kennst du meinen Bruder?",
+    "exampleRussian": "Ты знаешь моего брата?"
+  },
+  {
+    "germanWord": "bekannt",
+    "russianTranslation": "известный, знакомый",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "Неизвестный, Молодой, Старый",
+    "exampleGerman": "Er ist ein bekannter Arzt.",
+    "exampleRussian": "Он известный врач."
+  },
+  {
+    "germanWord": "unbekannt",
+    "russianTranslation": "неизвестный",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "Известный, Молодой, Высокий",
+    "exampleGerman": "Die Nummer ist mir unbekannt.",
+    "exampleRussian": "Этот номер мне неизвестен."
+  }
+]

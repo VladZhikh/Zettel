@@ -1,0 +1,167 @@
+[
+  {
+    "germanWord": "Die Familie",
+    "russianTranslation": "Семья",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Familien",
+    "verbForms": "",
+    "wrongOptions": "Команда, Компания, Класс",
+    "exampleGerman": "Meine Familie lebt in Deutschland.",
+    "exampleRussian": "Моя семья живет в Германии."
+  },
+  {
+    "germanWord": "Der Verwandte",
+    "russianTranslation": "Родственник",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Verwandten",
+    "verbForms": "",
+    "wrongOptions": "Друг, Коллега, Сосед",
+    "exampleGerman": "Viele Verwandte kommen zu unserem Fest.",
+    "exampleRussian": "Многие родственники придут на наш праздник."
+  },
+  {
+    "germanWord": "Die Verwandte",
+    "russianTranslation": "Родственница",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Verwandten",
+    "verbForms": "",
+    "wrongOptions": "Подруга, Учительница, Соседка",
+    "exampleGerman": "Meine Verwandte wohnt in München.",
+    "exampleRussian": "Моя родственница живет в Мюнхене."
+  },
+  {
+    "germanWord": "Das Baby",
+    "russianTranslation": "Младенец",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Babys",
+    "verbForms": "",
+    "wrongOptions": "Подросток, Мальчик, Девочка",
+    "exampleGerman": "Das Baby schläft ruhig.",
+    "exampleRussian": "Младенец спокойно спит."
+  },
+  {
+    "germanWord": "Der Enkel",
+    "russianTranslation": "Внук",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Enkel",
+    "verbForms": "",
+    "wrongOptions": "Сын, Племянник, Брат",
+    "exampleGerman": "Der Enkel besucht seine Großeltern jeden Sonntag.",
+    "exampleRussian": "Внук навещает своих бабушку и дедушку каждое воскресенье."
+  },
+  {
+    "germanWord": "Die Enkelin",
+    "russianTranslation": "Внучка",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Enkelinnen",
+    "verbForms": "",
+    "wrongOptions": "Дочь, Племянница, Сестра",
+    "exampleGerman": "Seine Enkelin malt gern.",
+    "exampleRussian": "Его внучка любит рисовать."
+  },
+  {
+    "germanWord": "Der Neffe",
+    "russianTranslation": "Племянник",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Neffen",
+    "verbForms": "",
+    "wrongOptions": "Сын, Внук, Друг",
+    "exampleGerman": "Mein Neffe spielt Fußball.",
+    "exampleRussian": "Мой племянник играет в футбол."
+  },
+  {
+    "germanWord": "Die Nichte",
+    "russianTranslation": "Племянница",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Nichten",
+    "verbForms": "",
+    "wrongOptions": "Дочь, Внучка, Подруга",
+    "exampleGerman": "Meine Nichte geht in den Kindergarten.",
+    "exampleRussian": "Моя племянница ходит в детский сад."
+  },
+  {
+    "germanWord": "Der Ehepartner",
+    "russianTranslation": "Супруг",
+    "category": "Семья",
+    "level": "A2",
+    "plural": "Die Ehepartner",
+    "verbForms": "",
+    "wrongOptions": "Друг, Брат, Коллега",
+    "exampleGerman": "Beide Ehepartner arbeiten Vollzeit.",
+    "exampleRussian": "Оба супруга работают полный день."
+  },
+  {
+    "germanWord": "Die Ehepartnerin",
+    "russianTranslation": "Супруга",
+    "category": "Семья",
+    "level": "A2",
+    "plural": "Die Ehepartnerinnen",
+    "verbForms": "",
+    "wrongOptions": "Сестра, Подруга, Коллега",
+    "exampleGerman": "Seine Ehepartnerin kommt später nach Hause.",
+    "exampleRussian": "Его супруга придет домой позже."
+  },
+  {
+    "germanWord": "ledig",
+    "russianTranslation": "неженатый, незамужняя",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "женатый, молодой, свободный",
+    "exampleGerman": "Ich bin noch ledig.",
+    "exampleRussian": "Я еще не женат."
+  },
+  {
+    "germanWord": "verheiratet",
+    "russianTranslation": "женатый, замужняя",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "холостой, молодой, свободный",
+    "exampleGerman": "Sie ist seit fünf Jahren verheiratet.",
+    "exampleRussian": "Она замужем уже пять лет."
+  },
+  {
+    "germanWord": "geschieden",
+    "russianTranslation": "разведенный",
+    "category": "Семья",
+    "level": "A2",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "женатый, вдовец, молодой",
+    "exampleGerman": "Seine Eltern sind geschieden.",
+    "exampleRussian": "Его родители разведены."
+  },
+  {
+    "germanWord": "heiraten",
+    "russianTranslation": "жениться, выходить замуж",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "heiratet, heiratete, hat geheiratet",
+    "wrongOptions": "разводиться, встречать, приглашать",
+    "exampleGerman": "Sie möchten nächstes Jahr heiraten.",
+    "exampleRussian": "Они хотят пожениться в следующем году."
+  },
+  {
+    "germanWord": "die Hochzeit",
+    "russianTranslation": "свадьба",
+    "category": "Семья",
+    "level": "A1",
+    "plural": "Die Hochzeiten",
+    "verbForms": "",
+    "wrongOptions": "День рождения, Вечеринка, Отпуск",
+    "exampleGerman": "Die Hochzeit findet im Mai statt.",
+    "exampleRussian": "Свадьба состоится в мае."
+  }
+]

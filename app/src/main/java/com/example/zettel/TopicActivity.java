@@ -62,6 +62,7 @@ public class TopicActivity extends AppCompatActivity {
         });
 
         // Восстановление списка тем после переворота экрана
+        // Восстановление списка тем после переворота экрана
         if (savedInstanceState != null && savedInstanceState.containsKey("SAVED_TOPICS")) {
             topics = (ArrayList<Topic>) savedInstanceState.getSerializable("SAVED_TOPICS");
             if (savedInstanceState.containsKey("SAVED_LEVEL")) {
@@ -74,14 +75,17 @@ public class TopicActivity extends AppCompatActivity {
                     }
                 }
             }
+            // Если восстановили из savedInstanceState, просто инициализируем адаптер
+            adapter = new TopicAdapter(topics, topic -> { /* ваша логика клика */ });
+            adapter.setSelectedLevel(currentSelectedLevel);
+            rvTopics.setAdapter(adapter);
         } else {
-            topics = new ArrayList<>();
-            topics.add(new Topic("transport", "Транспорт", "Der Transport"));
-            topics.add(new Topic("food", "Еда", "Das Essen"));
-            topics.add(new Topic("shopping", "Покупки", "Das Einkaufen"));
-            topics.add(new Topic("family", "Семья", "Die Familie"));
-            topics.add(new Topic("review", "Повторение слов", "Wiederholung"));
+            // ИСПРАВЛЕНО: Вместо захардкоженного списка загружаем все темы динамически из Room
+            loadDynamicTopics();
         }
+
+        // В самом конце onCreate динамические кнопки Назад и Теста (если они там прописаны)
+
 
         // Логика кнопки добавления нового слова (добавили поле выбора уровня)
         Button btnAddWord = findViewById(R.id.btnAddWord);
@@ -154,7 +158,7 @@ public class TopicActivity extends AppCompatActivity {
             builder.setNegativeButton("Отмена", null);
             builder.create().show();
         });
-        // --- ДИНАМИЧЕСКИЙ ВЫВОД КНОПКИ НАЗАД ВНИЗУ ЭКРАНА ---
+
         // --- ДИНАМИЧЕСКИЙ ВЫВОД КНОПОК НАЗАД И ТЕСТА ВНИЗУ ЭКРАНА ---
         try {
             android.view.ViewGroup parentLayout = (android.view.ViewGroup) btnAddWord.getParent();
@@ -215,7 +219,8 @@ public class TopicActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        // Принудительно пересканируем базу данных при каждом возврате на экран
+        loadDynamicTopics();
         if (adapter != null) {
             adapter.setSelectedLevel(currentSelectedLevel); // Принудительно обновляем уровень при возврате
         } else {
@@ -253,6 +258,65 @@ public class TopicActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    private void loadDynamicTopics() {
+        // Если список еще не создан, создаем его. Если создан — очищаем от старых данных
+        if (topics == null) {
+            topics = new ArrayList<>();
+        } else {
+            topics.clear();
+        }
+
+        // Запускаем фоновый поток для чтения категорий из базы данных Room
+        new Thread(() -> {
+            // 1. Извлекаем из БД список всех уникальных текстовых категорий
+            List<String> categoriesFromDb = db.wordDao().getUniqueCategories();
+
+            if (categoriesFromDb != null) {
+                for (String categoryName : categoriesFromDb) {
+                    // Защита: пропускаем системное "Повторение", если оно вдруг затесалось в базу слов
+                    if (categoryName.equalsIgnoreCase("Повторение слов") || categoryName.equalsIgnoreCase("Все слова (повторение)")) {
+                        continue;
+                    }
+
+                    String topicId = categoryName.toLowerCase().trim();
+
+                    String nameDe = "Kategorie: " + categoryName;
+
+                    // Добавляем тему в список, используя конструктор с 3 параметрами
+                    topics.add(new Topic(topicId, categoryName, nameDe));
+                }
+            }
+
+            // 2. Всегда добавляем системную кнопку "Повторение слов" в самый конец списка
+            topics.add(new Topic("review", "Повторение слов", "Wiederholung"));
+
+            // 3. Обновляем адаптер в главном UI-потоке
+            runOnUiThread(() -> {
+                if (adapter == null) {
+                    adapter = new TopicAdapter(topics, topic -> {
+                        // Ваша логика клика по теме (Intent на карточки)
+                        if (topic.getId().equals("review")) {
+                            Intent intent = new Intent(TopicActivity.this, ReviewActivity.class);
+                            intent.putExtra("DIFFICULTY_LEVEL", currentSelectedLevel);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(TopicActivity.this, ReviewActivity.class);
+                            intent.putExtra("DIFFICULTY_LEVEL", currentSelectedLevel);
+                            intent.putExtra("SELECTED_CATEGORY", topic.getNameRu());
+                            startActivity(intent);
+                        }
+                    });
+                    adapter.setSelectedLevel(currentSelectedLevel);
+                    rvTopics.setAdapter(adapter);
+                } else {
+                    // Если адаптер уже был создан, просто принудительно обновляем списки и шкалы
+                    adapter.setSelectedLevel(currentSelectedLevel);
+                    adapter.notifyDataSetChanged();
+                }
+            });
+        }).start();
+    }
+
 }
 
 

@@ -1,0 +1,167 @@
+[
+  {
+    "germanWord": "der Beruf",
+    "russianTranslation": "профессия",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Berufe",
+    "verbForms": "",
+    "wrongOptions": "Работа, Учеба, Хобби",
+    "exampleGerman": "Was ist dein Beruf?",
+    "exampleRussian": "Какая у тебя профессия?"
+  },
+  {
+    "germanWord": "arbeiten",
+    "russianTranslation": "работать",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "arbeitet, arbeitete, hat gearbeitet",
+    "wrongOptions": "Учиться, Отдыхать, Искать",
+    "exampleGerman": "Ich arbeite in einer Firma.",
+    "exampleRussian": "Я работаю в компании."
+  },
+  {
+    "germanWord": "der Student",
+    "russianTranslation": "студент",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Studenten",
+    "verbForms": "",
+    "wrongOptions": "Учитель, Врач, Рабочий",
+    "exampleGerman": "Der Student lernt Deutsch.",
+    "exampleRussian": "Студент изучает немецкий язык."
+  },
+  {
+    "germanWord": "die Studentin",
+    "russianTranslation": "студентка",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Studentinnen",
+    "verbForms": "",
+    "wrongOptions": "Учительница, Врач, Ученица",
+    "exampleGerman": "Die Studentin kommt aus Polen.",
+    "exampleRussian": "Студентка приехала из Польши."
+  },
+  {
+    "germanWord": "der Lehrer",
+    "russianTranslation": "учитель",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Lehrer",
+    "verbForms": "",
+    "wrongOptions": "Студент, Врач, Инженер",
+    "exampleGerman": "Unser Lehrer erklärt alles sehr gut.",
+    "exampleRussian": "Наш учитель очень хорошо всё объясняет."
+  },
+  {
+    "germanWord": "die Lehrerin",
+    "russianTranslation": "учительница",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Lehrerinnen",
+    "verbForms": "",
+    "wrongOptions": "Студентка, Медсестра, Врач",
+    "exampleGerman": "Die Lehrerin ist freundlich.",
+    "exampleRussian": "Учительница дружелюбная."
+  },
+  {
+    "germanWord": "der Arzt",
+    "russianTranslation": "врач",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Ärzte",
+    "verbForms": "",
+    "wrongOptions": "Учитель, Водитель, Повар",
+    "exampleGerman": "Der Arzt hilft den Menschen.",
+    "exampleRussian": "Врач помогает людям."
+  },
+  {
+    "germanWord": "die Ärztin",
+    "russianTranslation": "врач (женщина)",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Ärztinnen",
+    "verbForms": "",
+    "wrongOptions": "Учительница, Медсестра, Повар",
+    "exampleGerman": "Die Ärztin arbeitet im Krankenhaus.",
+    "exampleRussian": "Женщина-врач работает в больнице."
+  },
+  {
+    "germanWord": "lernen",
+    "russianTranslation": "учиться, изучать",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "lernt, lernte, hat gelernt",
+    "wrongOptions": "Работать, Учить, Читать",
+    "exampleGerman": "Wir lernen jeden Tag Deutsch.",
+    "exampleRussian": "Мы каждый день учим немецкий."
+  },
+  {
+    "germanWord": "studieren",
+    "russianTranslation": "учиться в вузе, изучать",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "studiert, studierte, hat studiert",
+    "wrongOptions": "Работать, Отдыхать, Искать",
+    "exampleGerman": "Er studiert Informatik.",
+    "exampleRussian": "Он изучает информатику в университете."
+  },
+  {
+    "germanWord": "kommen aus",
+    "russianTranslation": "быть родом из",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "kommt aus, kam aus, ist aus ... gekommen",
+    "wrongOptions": "Жить, Ехать, Работать",
+    "exampleGerman": "Ich komme aus der Ukraine.",
+    "exampleRussian": "Я родом из Украины."
+  },
+  {
+    "germanWord": "wohnen",
+    "russianTranslation": "жить, проживать",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "wohnt, wohnte, hat gewohnt",
+    "wrongOptions": "Работать, Учиться, Покупать",
+    "exampleGerman": "Wir wohnen in Berlin.",
+    "exampleRussian": "Мы живем в Берлине."
+  },
+  {
+    "germanWord": "die Adresse",
+    "russianTranslation": "адрес",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Adressen",
+    "verbForms": "",
+    "wrongOptions": "Телефон, Имя, Страна",
+    "exampleGerman": "Wie ist deine Adresse?",
+    "exampleRussian": "Какой у тебя адрес?"
+  },
+  {
+    "germanWord": "die Telefonnummer",
+    "russianTranslation": "номер телефона",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die Telefonnummern",
+    "verbForms": "",
+    "wrongOptions": "Адрес, Почта, Имя",
+    "exampleGerman": "Kann ich deine Telefonnummer haben?",
+    "exampleRussian": "Можно мне твой номер телефона?"
+  },
+  {
+    "germanWord": "die E-Mail",
+    "russianTranslation": "электронная почта",
+    "category": "Люди",
+    "level": "A1",
+    "plural": "die E-Mails",
+    "verbForms": "",
+    "wrongOptions": "Телефон, Письмо, Сообщение",
+    "exampleGerman": "Ich schreibe dir eine E-Mail.",
+    "exampleRussian": "Я напишу тебе электронное письмо."
+  }
+]
