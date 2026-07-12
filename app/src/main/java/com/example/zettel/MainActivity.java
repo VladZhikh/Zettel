@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
         // Инициализируем базу данных
         db = AppDatabase.getInstance(this);
 
-        // Запускаем первичное наполнение базы в безопасном фоновом потоке
-        new Thread(this::preloadWordsIfNeeded).start();
-
         // Ловим выбранную тему, имя категории и уровень сложности из TopicActivity
         String selectedTopicId = getIntent().getStringExtra("TOPIC_ID");
         String selectedCategoryName = getIntent().getStringExtra("TOPIC_NAME_RU");
