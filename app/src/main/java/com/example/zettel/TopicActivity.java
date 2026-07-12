@@ -62,7 +62,6 @@ public class TopicActivity extends AppCompatActivity {
         });
 
         // Восстановление списка тем после переворота экрана
-        // Восстановление списка тем после переворота экрана
         if (savedInstanceState != null && savedInstanceState.containsKey("SAVED_TOPICS")) {
             topics = (ArrayList<Topic>) savedInstanceState.getSerializable("SAVED_TOPICS");
             if (savedInstanceState.containsKey("SAVED_LEVEL")) {
@@ -159,61 +158,43 @@ public class TopicActivity extends AppCompatActivity {
             builder.create().show();
         });
 
-        // --- ДИНАМИЧЕСКИЙ ВЫВОД КНОПОК НАЗАД И ТЕСТА ВНИЗУ ЭКРАНА ---
+        // --- ДИНАМИЧЕСКИЙ ВЫВОД КНОПКИ НАЗАД ВНИЗУ ЭКРАНА ---
         try {
-            android.view.ViewGroup parentLayout = (android.view.ViewGroup) btnAddWord.getParent();
+            // Находим кнопку добавления слов, которая у вас точно есть на экране
+            View anchorView = findViewById(R.id.btnAddWord);
 
-            if (parentLayout != null) {
-                int index = parentLayout.indexOfChild(btnAddWord);
+            if (anchorView != null) {
+                android.view.ViewGroup parentLayout = (android.view.ViewGroup) anchorView.getParent();
 
-                // 1. СОЗДАЕМ КНОПКУ ТЕСТА ПО ТЕМЕ
-                Button btnTestTopic = new Button(this);
-                btnTestTopic.setText("Тест по этой теме");
-                btnTestTopic.setTextColor(android.graphics.Color.WHITE);
-                btnTestTopic.setBackgroundColor(android.graphics.Color.parseColor("#4CAF50")); // Зеленый цвет
+                if (parentLayout != null) {
+                    // Создаем синюю кнопку программно
+                    Button btnBackToMenu = new Button(this);
 
-                LinearLayout.LayoutParams testParams = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-                testParams.setMargins(0, 16, 0, 0);
-                btnTestTopic.setLayoutParams(testParams);
+                    // Настраиваем текст и цвета
+                    btnBackToMenu.setText("В главное меню");
+                    btnBackToMenu.setTextColor(android.graphics.Color.WHITE);
+                    btnBackToMenu.setBackgroundColor(android.graphics.Color.parseColor("#3F51B5")); // Синий цвет
 
-                // Кликая на тест по теме, мы берем текущую выбранную тему из списка (нужно адаптировать под ваш клик,
-                // но пока передаем маркер темы)
-                btnTestTopic.setOnClickListener(vTest -> {
-                    Intent intent = new Intent(TopicActivity.this, QuizActivity.class);
-                    intent.putExtra("MODE", "BY_TOPIC");
-                    intent.putExtra("DIFFICULTY_LEVEL", currentSelectedLevel);
-                    // Передаем имя текущей категории. Для теста можно брать категорию из выбранного spinner или адаптера
-                    intent.putExtra("SELECTED_CATEGORY", "Транспорт"); // Временная заглушка, ниже настроим динамически
-                    startActivity(intent);
-                });
+                    // Задаем размеры и отступы (совместимо со всеми экранами)
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    params.setMargins(0, 24, 0, 0); // Отступ сверху, чтобы кнопки не слипались
+                    btnBackToMenu.setLayoutParams(params);
 
-                parentLayout.addView(btnTestTopic, index + 1);
+                    // Вычисляем позицию кнопки добавления слов и вставляем синюю кнопку строго ПОД ней
+                    int index = parentLayout.indexOfChild(anchorView);
+                    parentLayout.addView(btnBackToMenu, index + 1);
 
-                // 2. НАША СТАРАЯ СИНЯЯ КНОПКА НАЗАД
-                Button btnBackToMenu = new Button(this);
-                btnBackToMenu.setText("В главное меню");
-                btnBackToMenu.setTextColor(android.graphics.Color.WHITE);
-                btnBackToMenu.setBackgroundColor(android.graphics.Color.parseColor("#3F51B5"));
-
-                LinearLayout.LayoutParams backParams = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-                backParams.setMargins(0, 16, 0, 0);
-                btnBackToMenu.setLayoutParams(backParams);
-                btnBackToMenu.setOnClickListener(vBack -> finish());
-
-                parentLayout.addView(btnBackToMenu, index + 2);
+                    // Логика нажатия: закрываем экран тем и безопасно возвращаемся на StartActivity
+                    btnBackToMenu.setOnClickListener(vBack -> finish());
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         // ----------------------------------------------------
-
     }
 
     @Override

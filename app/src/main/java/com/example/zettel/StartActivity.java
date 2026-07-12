@@ -40,11 +40,12 @@ public class StartActivity extends AppCompatActivity {
             startActivity(intent);
         });
         // Кнопка запуска тестирования с главного экрана (по уровням)
+        // Передаем текущий уровень. Если у вас на главном экране есть переменная выбранного уровня,
+        // подставьте её вместо "A1" (например: currentSelectedLevel)
         btnStartQuiz.setOnClickListener(v -> {
             Intent intent = new Intent(StartActivity.this, QuizActivity.class);
             intent.putExtra("MODE", "BY_LEVEL");
-            // Передаем текущий уровень. Если у вас на главном экране есть переменная выбранного уровня,
-            // подставьте её вместо "A1" (например: currentSelectedLevel)
+
             intent.putExtra("DIFFICULTY_LEVEL", "A1");
             startActivity(intent);
         });

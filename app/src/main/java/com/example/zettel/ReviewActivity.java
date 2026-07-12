@@ -1,7 +1,9 @@
 package com.example.zettel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,6 +78,26 @@ public class ReviewActivity extends AppCompatActivity {
                 }
             });
         }).start();
+        // Находим кнопку в разметке
+        Button btnStartTopicQuiz = findViewById(R.id.btnStartTopicQuiz);
+
+        // Считываем текущие фильтры, которые прилетели из экрана тем
+        //String selectedDifficulty = getIntent().getStringExtra("DIFFICULTY_LEVEL");
+        String selectedCategory = getIntent().getStringExtra("SELECTED_CATEGORY");
+
+        // Если это общий экран "Повторение слов", скрываем кнопку теста по теме (или оставляем, решайте сами)
+        if (selectedCategory == null) {
+            btnStartTopicQuiz.setText("Пройти тест по всем словам");
+        }
+
+        btnStartTopicQuiz.setOnClickListener(v -> {
+            Intent intent = new Intent(ReviewActivity.this, QuizActivity.class);
+            intent.putExtra("MODE", "BY_TOPIC");
+            intent.putExtra("DIFFICULTY_LEVEL", finalDifficulty);
+            intent.putExtra("SELECTED_CATEGORY", selectedCategory); // Передаем РЕАЛЬНОЕ имя темы (Еда, Транспорт и т.д.)
+            startActivity(intent);
+        });
+
     }
 
 

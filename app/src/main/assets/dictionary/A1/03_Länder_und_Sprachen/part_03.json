@@ -1,0 +1,112 @@
+[
+  {
+    "germanWord": "lesen",
+    "russianTranslation": "читать",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "liest, las, hat gelesen",
+    "wrongOptions": "",
+    "exampleGerman": "Ich lese gern deutsche Bücher.",
+    "exampleRussian": "Я с удовольствием читаю немецкие книги."
+  },
+  {
+    "germanWord": "schreiben",
+    "russianTranslation": "писать",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "schreibt, schrieb, hat geschrieben",
+    "wrongOptions": "",
+    "exampleGerman": "Sie schreibt eine E-Mail.",
+    "exampleRussian": "Она пишет электронное письмо."
+  },
+  {
+    "germanWord": "buchstabieren",
+    "russianTranslation": "произносить по буквам",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "buchstabiert, buchstabierte, hat buchstabiert",
+    "wrongOptions": "",
+    "exampleGerman": "Können Sie Ihren Namen buchstabieren?",
+    "exampleRussian": "Вы можете произнести своё имя по буквам?"
+  },
+  {
+    "germanWord": "fragen",
+    "russianTranslation": "спрашивать",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "fragt, fragte, hat gefragt",
+    "wrongOptions": "",
+    "exampleGerman": "Ich frage den Lehrer.",
+    "exampleRussian": "Я спрашиваю учителя."
+  },
+  {
+    "germanWord": "antworten",
+    "russianTranslation": "отвечать",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "antwortet, antwortete, hat geantwortet",
+    "wrongOptions": "",
+    "exampleGerman": "Er antwortet auf meine Frage.",
+    "exampleRussian": "Он отвечает на мой вопрос."
+  },
+  {
+    "germanWord": "erzählen",
+    "russianTranslation": "рассказывать",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "erzählt, erzählte, hat erzählt",
+    "wrongOptions": "",
+    "exampleGerman": "Sie erzählt eine interessante Geschichte.",
+    "exampleRussian": "Она рассказывает интересную историю."
+  },
+  {
+    "germanWord": "die Frage",
+    "russianTranslation": "вопрос",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "die Fragen",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Ich habe eine Frage.",
+    "exampleRussian": "У меня есть вопрос."
+  },
+  {
+    "germanWord": "die Antwort",
+    "russianTranslation": "ответ",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "die Antworten",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Die Antwort ist richtig.",
+    "exampleRussian": "Ответ правильный."
+  },
+  {
+    "germanWord": "das Wort",
+    "russianTranslation": "слово",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "die Wörter",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Dieses Wort ist neu.",
+    "exampleRussian": "Это слово новое."
+  },
+  {
+    "germanWord": "der Satz",
+    "russianTranslation": "предложение",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "die Sätze",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Der Satz ist leicht zu verstehen.",
+    "exampleRussian": "Это предложение легко понять."
+  }
+]

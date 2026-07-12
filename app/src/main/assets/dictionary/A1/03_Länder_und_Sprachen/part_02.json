@@ -1,0 +1,112 @@
+[
+  {
+    "germanWord": "Frankreich",
+    "russianTranslation": "Франция",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Frankreich ist für seine Küche bekannt.",
+    "exampleRussian": "Франция известна своей кухней."
+  },
+  {
+    "germanWord": "Italien",
+    "russianTranslation": "Италия",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Viele Menschen machen Urlaub in Italien.",
+    "exampleRussian": "Многие люди проводят отпуск в Италии."
+  },
+  {
+    "germanWord": "Spanien",
+    "russianTranslation": "Испания",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Spanien hat viele schöne Strände.",
+    "exampleRussian": "В Испании много красивых пляжей."
+  },
+  {
+    "germanWord": "Engländer",
+    "russianTranslation": "англичанин",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "die Engländer",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Der Engländer spricht sehr gut Deutsch.",
+    "exampleRussian": "Англичанин очень хорошо говорит по-немецки."
+  },
+  {
+    "germanWord": "Deutsche",
+    "russianTranslation": "немец (житель Германии)",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "die Deutschen",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Viele Deutsche trinken gern Kaffee.",
+    "exampleRussian": "Многие немцы любят пить кофе."
+  },
+  {
+    "germanWord": "sprechen",
+    "russianTranslation": "говорить",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "spicht, sprach, hat gesprochen",
+    "wrongOptions": "",
+    "exampleGerman": "Ich spreche Deutsch und Englisch.",
+    "exampleRussian": "Я говорю по-немецки и по-английски."
+  },
+  {
+    "germanWord": "lesen",
+    "russianTranslation": "читать",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "liest, las, hat gelesen",
+    "wrongOptions": "",
+    "exampleGerman": "Sie liest ein deutsches Buch.",
+    "exampleRussian": "Она читает немецкую книгу."
+  },
+  {
+    "germanWord": "schreiben",
+    "russianTranslation": "писать",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "schreibt, schrieb, hat geschrieben",
+    "wrongOptions": "",
+    "exampleGerman": "Ich schreibe eine E-Mail auf Deutsch.",
+    "exampleRussian": "Я пишу электронное письмо на немецком."
+  },
+  {
+    "germanWord": "buchstabieren",
+    "russianTranslation": "произносить по буквам",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "",
+    "verbForms": "buchstabiert, buchstabierte, hat buchstabiert",
+    "wrongOptions": "",
+    "exampleGerman": "Kannst du deinen Namen buchstabieren?",
+    "exampleRussian": "Ты можешь произнести своё имя по буквам?"
+  },
+  {
+    "germanWord": "die Nationalität",
+    "russianTranslation": "национальность",
+    "category": "Länder und Sprachen",
+    "level": "A1",
+    "plural": "die Nationalitäten",
+    "verbForms": "",
+    "wrongOptions": "",
+    "exampleGerman": "Was ist deine Nationalität?",
+    "exampleRussian": "Какая у тебя национальность?"
+  }
+]

@@ -32,15 +32,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Все слова (Повторение)"
-            android:textColor="#212529"
+            android:textColor="#3F51B5"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginStart="12dp"/>
     </LinearLayout>
 
+    <!-- Кнопка запуска теста по конкретной открытой теме -->
+    <Button
+        android:id="@+id/btnStartTopicQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:text="Пройти тест по этой теме"
+        android:textSize="16sp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
     <!-- Список слов -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvReviewWords"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+
 </LinearLayout>
