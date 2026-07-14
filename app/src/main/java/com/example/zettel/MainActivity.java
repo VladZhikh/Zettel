@@ -1,8 +1,10 @@
 package com.example.zettel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.zettel.databinding.ActivityMainBinding;
@@ -81,6 +83,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Находим кнопку в разметке
+        Button btnStartTopicQuiz = findViewById(R.id.btnStartTopicQuiz);
+
+        // Считываем текущие фильтры, которые прилетели из экрана тем
+        String selectedDifficulty = getIntent().getStringExtra("DIFFICULTY_LEVEL");
+        String selectedCategory = getIntent().getStringExtra("SELECTED_CATEGORY");
+
+        // Если это общий экран "Повторение слов", скрываем кнопку теста по теме (или оставляем)
+        if (selectedCategory == null) {
+            btnStartTopicQuiz.setText("Пройти тест по всем словам");
+        }
+
+        btnStartTopicQuiz.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+            intent.putExtra("MODE", "BY_TOPIC");
+            intent.putExtra("DIFFICULTY_LEVEL", selectedLevel);
+            intent.putExtra("SELECTED_CATEGORY", selectedCategoryName); // Передаем РЕАЛЬНОЕ имя темы (Еда, Транспорт и т.д.)
+            startActivity(intent);
+        });
 
         // Клик по динамику на самой карточке слова (повторная озвучка)
         binding.btnSpeakCard.setOnClickListener(new View.OnClickListener() {
