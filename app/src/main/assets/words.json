@@ -90,6 +90,33 @@
     "exampleRussian": "Вертолет приземляется на крышу."
   },
   {
+    "germanWord": "das Werkzeug",
+    "russianTranslation": "Инструмент",
+    "category": "die Arbeit",
+    "level": "A2",
+    "wrongOptions": "Автобус, Метро, Велосипед",
+    "exampleGerman": "Ich muss noch das Werkzeug wegräumen.",
+    "exampleRussian": "Мне еще нужно убрать инструменты."
+  },
+  {
+    "germanWord": "mitspielen",
+    "russianTranslation": "играть вместе, участвовать",
+    "category": "der Sport",
+    "level": "A2",
+    "wrongOptions": "учится, работать, убирать",
+    "exampleGerman": "Niki kommt auch und spielt mit.",
+    "exampleRussian": "Ники тоже приходит и играет вместе с нами."
+  },
+  {
+    "germanWord": "verbringen",
+    "russianTranslation": "проводить время",
+    "category": "die Familie",
+    "level": "A2",
+    "wrongOptions": "учится, работать, убирать",
+    "exampleGerman": "Ich verbringe viel Zeit mit meiner Tochter.",
+    "exampleRussian": "Я провожу много времени со своей дочерью."
+  },
+  {
     "germanWord": "Das Essen",
     "russianTranslation": "Еда",
     "category": "Еда",
@@ -331,4 +358,5 @@
     "exampleGerman": "Viele Verwandte kommen zu meinem Geburtstag.",
     "exampleRussian": "Много родственников придут на мой день рождения."
   }
+
 ]

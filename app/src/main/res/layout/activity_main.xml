@@ -20,6 +20,16 @@
         android:contentDescription="Назад к темам"
         android:src="@android:drawable/ic_menu_revert"
         app:tint="#212529" />
+    <Button
+        android:id="@+id/btnStartTopicQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:text="Пройти тест по этой теме"
+        android:textSize="16sp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 
     <!-- карточка слова -->
     <LinearLayout

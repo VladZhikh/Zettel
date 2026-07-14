@@ -181,58 +181,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // метод автозаполнения базы слов разной сложности
-    private void preloadWordsIfNeeded() {
-        try {
-            WordDao dao = db.wordDao();
-
-            // 1. Открываем и читаем наш новый файл words.json из папки assets
-            java.io.InputStream inputStream = getAssets().open("words.json");
-            java.io.InputStreamReader reader = new java.io.InputStreamReader(inputStream, java.nio.charset.StandardCharsets.UTF_8);
-
-            // 2. Распаковываем JSON в список объектов Java
-            com.google.gson.Gson gson = new com.google.gson.Gson();
-            java.lang.reflect.Type listType = new com.google.gson.reflect.TypeToken<List<Word>>(){}.getType();
-            List<Word> wordsFromJson = gson.fromJson(reader, listType);
-
-            reader.close();
-
-            if (wordsFromJson != null && !wordsFromJson.isEmpty()) {
-                // 3. Вытаскиваем слова, которые УЖЕ РЕАЛЬНО ЕСТЬ в базе данных, чтобы избежать дубликатов
-                List<Word> currentWordsInDb = dao.getAllWords();
-
-                // Собираем немецкие слова в HashSet для моментального поиска в памяти
-                java.util.HashSet<String> existingGermanKeys = new java.util.HashSet<>();
-                if (currentWordsInDb != null) {
-                    for (Word w : currentWordsInDb) {
-                        if (w.getGermanWord() != null) {
-                            existingGermanKeys.add(w.getGermanWord().trim().toLowerCase());
-                        }
-                    }
-                }
-
-                // 4. Оборачиваем в транзакцию Room для мгновенной пакетной вставки (защита от зависаний)
-                db.runInTransaction(() -> {
-                    for (Word word : wordsFromJson) {
-                        if (word.getGermanWord() != null) {
-                            String jsonWordKey = word.getGermanWord().trim().toLowerCase();
-
-                            // Если слова еще нет в базе — добавляем
-                            if (!existingGermanKeys.contains(jsonWordKey)) {
-                                dao.insertWord(word);
-                            }
-                        }
-                    }
-                });
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Если в JSON опечатка (например, забыли запятую), приложение не упадет, а просто выведет ошибку в лог
-            android.util.Log.e("Zettel_JSON", "Ошибка при импорте JSON: " + e.getMessage());
-        }
-    }
-
     @Override
     protected void onDestroy() {
         if (textToSpeech != null) {
